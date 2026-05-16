@@ -34,7 +34,6 @@
     "node-cron": "^4.2.1",
     "redis": "^5.12.1",
     "slugify": "^1.6.9",
-    "socket.io": "^4.8.3",
     "uuid": "^14.0.0",
     "validator": "^13.15.35",
     "winston": "^3.19.0",
