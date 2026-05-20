@@ -13,9 +13,9 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)](https://jwt.io/)
+[![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA)
 
-[Live Demo](#) · [Documentation](#api-endpoints) · [Report Bug](https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues) · [Request Feature](https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues)
+[Live Demo](#) · [API Documentation](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA) · [Report Bug](https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues) · [Request Feature](https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues)
 
 </div>
 
@@ -218,6 +218,19 @@ priceSchema.index({ country: 1, year: -1 });
 ```
 
 ---
+
+## 🚀 API Documentation & Interactive Testing
+
+To facilitate seamless integration and testing, a comprehensive Postman collection has been published. This documentation includes detailed request/response schemas, authentication requirements, and example use cases for every endpoint.
+
+<div align="center">
+
+### 📂 [Explore the Interactive API Collection on Postman](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA)
+
+[![View Documentation](https://img.shields.io/badge/View_Full_Documentation-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA)
+[![Run in Postman](https://img.shields.io/badge/Run_In_Postman-0081CB?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA)
+
+</div>
 
 ---
 
