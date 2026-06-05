@@ -3,7 +3,7 @@ const rateLimit = require("express-rate-limit");
 // General API rate limiting to prevent spam and DDoS
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes window
-  max: 100, // Limit each IP to 100 requests per window
+  max: 1000, // Increased limit for dashboard micro-requests
   message: {
     success: false,
     message:
@@ -15,18 +15,18 @@ const apiLimiter = rateLimit({
 
 // Strict limiting for authentication routes to prevent brute force
 const authLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour window
-  max: 5, // Limit each IP to 5 auth requests per hour
+  windowMs: 15 * 60 * 1000, // 15 minute window (relaxed for testing)
+  max: 100, // Limit each IP to 100 auth requests per 15 mins
   message: {
     success: false,
-    message: "Too many login attempts, please try again after an hour",
+    message: "Too many login attempts, please try again after 15 minutes",
   },
 });
 
 // Admin specific rate limiter to protect heavy operations
 const adminLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 50, // Stricter limit for heavy admin operations
+  max: 500, // Stricter limit for heavy admin operations
   message: {
     success: false,
     message: "Admin request limit exceeded, please try again later",
@@ -36,7 +36,7 @@ const adminLimiter = rateLimit({
 // Search specific rate limiter
 const searchLimiter = rateLimit({
   windowMs: 1 * 60 * 1000,
-  max: 30,
+  max: 200,
   message: { success: false, message: "Too many searches, please slow down" },
 });
 

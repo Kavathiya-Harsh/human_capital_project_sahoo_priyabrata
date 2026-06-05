@@ -8,7 +8,7 @@ const { authorizeRoles } = require("../middlewares/role.middleware");
 
 const { validateRequest } = require("../middlewares/validate.middleware");
 
-const apiLimiter = rateLimit({ windowMs: 1 * 60 * 1000, max: 100 });
+const apiLimiter = rateLimit({ windowMs: 1 * 60 * 1000, max: 500 });
 const spamLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 10 });
 
 router.use(apiLimiter);
