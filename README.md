@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./frontend/src/assets/logo.png" alt="Human Capital Analytics Logo" width="180" style="border-radius: 20px; margin-bottom: 20px;"/>
+
 # 📊 Human Capital Analytics | Full MERN Stack Platform
 
 **Enterprise-Level Dashboard & Predictive Analytics System for Global Economic Intelligence**
@@ -119,10 +121,10 @@ client/
 ├── public/               # Static assets & SEO files
 ├── src/
 │   ├── components/       # Shared UI components (Atomic design)
-│   ├── features/         # Feature-specific logic (Auth, Analytics, Dashboard)
+│   ├── features/         # Redux Slices (Auth, UI, Data)
 │   ├── layouts/          # Page wrappers (AdminLayout, MainLayout)
 │   ├── routes/           # Protected & public route definitions
-│   ├── store/            # Redux Toolkit slices & global store
+│   ├── store/            # Redux Toolkit global store config
 │   ├── hooks/            # Custom reusable React hooks
 │   └── services/         # API abstraction layer (Axios instances)
 ```
@@ -145,52 +147,64 @@ server/
 
 ## ⚙️ Installation & Setup
 
-### 1. Repository Setup
+Follow these structured steps to bootstrap your local development environment:
 
-```bash
-git clone https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata.git
-cd human_capital_project_sahoo_priyabrata
-```
-
-### 2. Backend Configuration
-
-```bash
-cd server
+<table style="border: none; background: transparent; width: 100%; border-collapse: collapse;">
+  <tr style="border: none; background: transparent;">
+    <td style="border: none; vertical-align: top; padding: 16px 0;">
+      <h3 style="margin-top: 0; color: #ff6038;">1️⃣ Repository Setup</h3>
+      <p style="margin-bottom: 8px;">Clone the enterprise repository and navigate into the workspace root:</p>
+      <pre><code class="language-bash">git clone https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata.git
+cd human_capital_project_sahoo_priyabrata</code></pre>
+    </td>
+  </tr>
+  <tr style="border: none; background: transparent;">
+    <td style="border: none; vertical-align: top; padding: 16px 0;">
+      <h3 style="margin-top: 0; color: #ff6038;">2️⃣ Backend Configuration</h3>
+      <p style="margin-bottom: 8px;">Navigate to the <code>backend/</code> directory, install core server dependencies, populate your environment variables, and run the development listener:</p>
+      <pre><code class="language-bash">cd backend
 npm install
 cp .env.example .env
-# Configure MONGODB_URI & JWT_SECRET
-npm run dev
-```
-
-### 3. Frontend Configuration
-
-```bash
-cd ../client
+# Configure MONGODB_URI & JWT_SECRET inside .env
+npm run dev</code></pre>
+    </td>
+  </tr>
+  <tr style="border: none; background: transparent;">
+    <td style="border: none; vertical-align: top; padding: 16px 0;">
+      <h3 style="margin-top: 0; color: #ff6038;">3️⃣ Frontend Configuration</h3>
+      <p style="margin-bottom: 8px;">In a parallel terminal session, navigate to the <code>frontend/</code> directory, install UI package modules, copy the client variables, and boot Vite:</p>
+      <pre><code class="language-bash">cd ../frontend
 npm install
 cp .env.example .env
-# Configure VITE_API_BASE_URL
-npm run dev
-```
+# Configure VITE_API_URL inside .env
+npm run dev</code></pre>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🔑 Environment Variables
+## 🔑 Environment Variables & Configurations
 
-### 🔒 Backend (.env)
+Configure the `.env` settings inside their respective root directories to successfully bind the client and server engines.
 
-| Variable      | Description       | Example                 |
-| :------------ | :---------------- | :---------------------- |
-| `NODE_ENV`    | Environment State | `production`            |
-| `MONGODB_URI` | Connection String | `mongodb+srv://...`     |
-| `JWT_SECRET`  | Auth Token Secret | `your_long_secure_hash` |
-| `PORT`        | Server Port       | `5000`                  |
+### 🔒 Backend Environment Setup (`backend/.env`)
 
-### 🌐 Frontend (.env)
+| Variable | Type | Description | Default / Example |
+| :--- | :--- | :--- | :--- |
+| `NODE_ENV` | String | Active system state | `development` |
+| `PORT` | Number | Active listening port for Express | `5000` |
+| `MONGODB_URI` | String | MongoDB Atlas Cloud URL string | `mongodb+srv://...` |
+| `LOCAL_MONGODB_URI` | String | Fallback connection string for local servers | `mongodb://127.0.0.1:27017/humanCapitalDB` |
+| `JWT_SECRET` | String | Encryption token hash for user authentication | `super_secret_jwt_key_for_human_capital_api_2026` |
+| `JWT_EXPIRES_IN` | String | Lifespan of signed credentials | `15m` |
 
-| Variable        | Description      | Example                        |
-| :-------------- | :--------------- | :----------------------------- |
-| `VITE_API_URL`  | Backend Endpoint | `http://localhost:5000/api/v1` |
-| `VITE_APP_NAME` | SEO Brand Name   | `Human Capital Analytics`      |
+### 🌐 Frontend Environment Setup (`frontend/.env`)
+
+| Variable | Type | Description | Default / Example |
+| :--- | :--- | :--- | :--- |
+| `VITE_API_URL` | String | Backend REST API endpoint pointer | `http://localhost:5000/api/v1` |
+| `VITE_APP_NAME` | String | SEO platform identity and brand name | `"Human Capital Analytics"` |
 
 ---
 
@@ -385,9 +399,10 @@ To facilitate seamless integration and testing, a comprehensive Postman collecti
 
 The platform uses a unified design language centered around **clarity** and **efficiency**:
 
+- **Neumorphism Design System**: Deep 3D styling combined with Material-UI and Tailwind for an ultra-modern aesthetic.
 - **Sidebar Navigation**: Collapsible, responsive navigation for deep module access.
-- **Data Tables**: Feature-rich grids with sorting, filtering, and export to CSV.
-- **Skeleton Loaders**: Custom SVGs providing smooth visual transitions during data fetching.
+- **Data Tables**: Feature-rich grids with sorting, filtering, and backend pagination.
+- **Skeleton Loaders**: Custom skeletons providing smooth visual transitions during data fetching.
 - **Empty States**: Professional illustrations for scenarios with no data matches.
 
 ---
@@ -445,29 +460,69 @@ curl -H "Authorization: Bearer <TOKEN>" \
 
 ## 🤝 Contributing
 
-Contributions drive the open-source community. Please follow the **Fork-Feature-Pull Request** workflow.
+<p align="center">
+  Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are <strong>greatly appreciated</strong>.
+</p>
+
+<p align="center">
+  <a href="https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/fork"><img src="https://img.shields.io/badge/Fork_Repo-1e293b?style=for-the-badge&logo=git-fork&logoColor=white" alt="Fork" /></a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues"><img src="https://img.shields.io/badge/Report_Bug-e11d48?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug" /></a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues"><img src="https://img.shields.io/badge/Request_Feature-059669?style=for-the-badge&logo=github&logoColor=white" alt="Request Feature" /></a>
+</p>
 
 ---
 
 ## 📜 License
 
-Distributed under the **MIT License**. See `LICENSE` for details.
+Distributed under the **MIT License**. See [LICENSE](file:///c:/Users/priyabrata/Desktop/Human_Capital/human_capital_project_sahoo_priyabrata/LICENSE) for more details.
+
+<p align="left">
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white&color=10b981" alt="License: MIT" />
+  </a>
+</p>
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Developer & Author
 
-**Priyabrata Sahoo**
-
-- [GitHub](https://github.com/priyabratasahoo780)
-- [LinkedIn](https://www.linkedin.com/in/priyabrata-sahoo/)
+<table align="center" style="border: none; background: transparent; border-collapse: collapse;">
+  <tr style="background: transparent; border: none;">
+    <td align="center" style="border: none; padding: 24px;">
+      <a href="https://github.com/priyabratasahoo780">
+        <img src="https://github.com/priyabratasahoo780.png" width="110" style="border-radius: 50%; border: 3px solid #ff6038; box-shadow: 0 10px 30px rgba(255,96,56,0.25);" alt="Priyabrata Sahoo" />
+      </a>
+      <br /><br />
+      <strong style="font-size: 1.25rem; color: #f8fafc;">Priyabrata Sahoo</strong>
+      <br />
+      <span style="color: #94a3b8; font-size: 0.95rem;">Full-Stack Software Engineer & Platform Architect</span>
+    </td>
+  </tr>
+  <tr style="background: transparent; border: none;">
+    <td align="center" style="border: none; padding-bottom: 24px;">
+      <a href="https://github.com/priyabratasahoo780" target="_blank">
+        <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Profile" />
+      </a>
+      &nbsp;&nbsp;
+      <a href="https://www.linkedin.com/in/priyabrata-sahoo/" target="_blank">
+        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 ---
 
 <div align="center">
 
-### 🚀 Deciphering the world's data, one record at a time.
+<h3>🚀 Deciphering the world's data, one record at a time.</h3>
 
-[Back to Top](#-human-capital-analytics--full-mern-stack-platform)
+<br />
+
+<a href="#-human-capital-analytics--full-mern-stack-platform">
+  <img src="https://img.shields.io/badge/Back_to_Top-ff6038?style=for-the-badge&logo=arrow-up&logoColor=white" alt="Back to Top" />
+</a>
 
 </div>
