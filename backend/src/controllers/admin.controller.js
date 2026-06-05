@@ -44,8 +44,8 @@ const getUserById = asyncHandler(async (req, res) => {
 });
 
 const updateUserRole = asyncHandler(async (req, res) => {
-  const data = await adminService.updateUserRole(req.params.id, req.body.role);
-  return successResponse(res, 200, "User role updated successfully", data);
+  const data = await adminService.updateUserRole(req.params.id, req.body);
+  return successResponse(res, 200, "User updated successfully", data);
 });
 
 const deleteUser = asyncHandler(async (req, res) => {

@@ -25,8 +25,19 @@ const getAllUsersService = async (queryObj) => {
 };
 
 const getUserByIdService = async (id) => User.findById(id).lean();
-const updateUserRoleService = async (id, role) =>
-  User.findByIdAndUpdate(id, { role }, { new: true, runValidators: true });
+const updateUserRoleService = async (id, updateData) => {
+  const user = await User.findById(id).select("+password");
+  if (!user) return null;
+
+  if (updateData.name) user.name = updateData.name;
+  if (updateData.email) user.email = updateData.email;
+  if (updateData.role) user.role = updateData.role;
+  if (updateData.password) user.password = updateData.password;
+
+  const savedUser = await user.save();
+  savedUser.password = undefined;
+  return savedUser;
+};
 const deleteUserService = async (id) => User.findByIdAndDelete(id);
 
 const adminCreatePriceService = async (data) => Price.create(data);
