@@ -1,19 +1,77 @@
 const Price = require("../models/price.model");
+const User = require("../models/user.model");
 
 // Aggregate statistics using MongoDB pipelines for maximum performance on 190k records
 const getPriceStatisticsService = async () => {
-  const stats = await Price.aggregate([
-    {
-      $group: {
-        _id: null,
-        totalRecords: { $sum: 1 },
-        averageValue: { $avg: "$value" },
-        maxValue: { $max: "$value" },
-        minValue: { $min: "$value" },
+  try {
+    // Get main stats
+    const statsPromise = Price.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalRecords: { $sum: 1 },
+          averageValue: { $avg: "$value" },
+          maxValue: { $max: "$value" },
+          minValue: { $min: "$value" },
+        },
       },
-    },
-  ]);
-  return stats[0] || {};
+    ]);
+
+    // Get distinct countries count
+    const countriesCountPromise = Price.distinct("countryCode");
+
+    // Get trend: average value by year
+    const trendPromise = Price.aggregate([
+      { $group: { _id: "$year", value: { $avg: "$value" } } },
+      { $sort: { _id: 1 } },
+      { $limit: 8 }
+    ]);
+
+    // Get categories: count by indicatorName
+    const categoriesPromise = Price.aggregate([
+      { $group: { _id: "$indicatorName", count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 5 }
+    ]);
+
+    // Get active users count
+    const usersCountPromise = User.countDocuments();
+
+    const [stats, countries, trendAgg, categoryAgg, activeUsers] = await Promise.all([
+      statsPromise,
+      countriesCountPromise,
+      trendPromise,
+      categoriesPromise,
+      usersCountPromise
+    ]);
+
+    const mainStats = stats[0] || { totalRecords: 0, averageValue: 0, maxValue: 0, minValue: 0 };
+
+    const trend = trendAgg.map(t => ({
+      name: String(t._id),
+      value: t.value ? Math.round(t.value * 100) / 100 : 0
+    }));
+
+    const categories = categoryAgg.map(c => ({
+      name: c._id ? (c._id.length > 25 ? c._id.substring(0, 22) + "..." : c._id) : 'General',
+      count: c.count
+    }));
+
+    return {
+      totalRecords: mainStats.totalRecords,
+      totalIndicators: mainStats.totalRecords,
+      totalCountries: countries.length,
+      activeUsers,
+      averageValue: mainStats.averageValue,
+      maxValue: mainStats.maxValue,
+      minValue: mainStats.minValue,
+      trend: trend.length > 0 ? trend : undefined,
+      categories: categories.length > 0 ? categories : undefined
+    };
+  } catch (error) {
+    console.error("Error in getPriceStatisticsService:", error);
+    return {};
+  }
 };
 
 const getHighestValueService = async () => {
