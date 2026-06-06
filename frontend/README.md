@@ -13,6 +13,10 @@
 [![Redux](https://img.shields.io/badge/Redux_Toolkit-2.1-593D88?style=for-the-badge&logo=redux&logoColor=white)](https://redux-toolkit.js.org/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.3-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://framer.com/motion/)
 
+<br/>
+
+[![Live Deployment](https://img.shields.io/badge/Live_Deployment-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://human-capital-project-sahoo-priyabr.vercel.app/)
+
 > A highly performant client-side application designed to visualize consumer price indices, inflation trends, and macro-economic factors utilizing interactive charting, advanced filtering, and a state-of-the-art Glassmorphic & Neumorphic design system.
 
 ---

@@ -17,7 +17,7 @@
 [![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA)
 
-[Live Demo](#) · [API Documentation](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA) · [Report Bug](https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues) · [Request Feature](https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues)
+[Live Demo](https://human-capital-project-sahoo-priyabr.vercel.app/) · [API Documentation](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA) · [Report Bug](https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues) · [Request Feature](https://github.com/priyabratasahoo780/human_capital_project_sahoo_priyabrata/issues)
 
 </div>
 

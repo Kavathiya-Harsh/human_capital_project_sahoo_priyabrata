@@ -13,6 +13,10 @@
 [![Zod](https://img.shields.io/badge/Zod-Validators-3E67B1?style=for-the-badge&logo=zod&logoColor=white)](https://zod.dev/)
 [![Postman](https://img.shields.io/badge/API_Docs-Interactive-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/50839186/2sBXqRiGpA)
 
+<br/>
+
+[![Live API Deployment](https://img.shields.io/badge/Live_API_Deployment-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://human-capital-project-sahoo-priyabrata.onrender.com)
+
 > A strictly decoupled, enterprise-grade MVC backend engine built to deliver lightning-fast analytics over 190,000+ consumer price records using MongoDB Aggregation Pipelines and a hardened multi-layer defense system.
 
 ---
