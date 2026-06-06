@@ -23,6 +23,69 @@
 
 </div>
 
+## 🏗️ Frontend System Architecture
+
+The frontend is built using a highly modular Component-Driven Architecture. It acts as a single-page application (SPA) powered by Vite, utilizing Redux Toolkit for global state and Axios for backend communications.
+
+```mermaid
+graph TD
+    subgraph "UI Layer (React)"
+        Layouts[Main Layouts / Routing]
+        Pages[Page Views: Dashboard, Data Grid]
+        Widgets[Widgets & Charts]
+        Forms[Formik & Yup Validators]
+    end
+
+    subgraph "State & Data Layer (Redux)"
+        Store[(Redux Global Store)]
+        AuthSlice[Auth Slice: Sessions & JWT]
+        DataSlice[Data Slice: Metrics & Grids]
+        UISlice[UI Slice: Theme & Sidebar]
+    end
+
+    subgraph "Service Layer"
+        Axios[Axios Instance & Interceptors]
+        API[API Services]
+    end
+
+    Layouts --> Pages
+    Pages --> Widgets
+    Pages --> Forms
+    Widgets --> Store
+    Forms --> Store
+    Store --> Axios
+    Axios --> API
+    API -->|HTTP Requests| RemoteBackend[Remote Node.js Backend]
+```
+
+---
+
+## 🔄 Frontend Application Workflow
+
+The application follows a strictly unidirectional data flow ensuring predictable state management and lifecycle tracking:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Component as React Component
+    participant Redux as Redux Thunk
+    participant Axios as Interceptor
+    participant API as Backend API
+
+    User->>Component: Interacts with UI (e.g. Filter Data)
+    Component->>Redux: Dispatch Action (fetchStats)
+    Redux->>Axios: Initiate HTTP Request
+    Axios->>Axios: Inject JWT Token (Bearer)
+    Axios->>API: GET /api/v1/stats
+    API-->>Axios: 200 OK + JSON Payload
+    Axios-->>Redux: Resolve Promise
+    Redux->>Redux: Update Global State
+    Redux-->>Component: Re-render UI with new data
+    Component-->>User: Display updated charts/tables
+```
+
+---
+
 ## 🌌 System Capabilities
 
 This application acts as a secure control center for analyzing global economic intelligence. Key client-side modules include:

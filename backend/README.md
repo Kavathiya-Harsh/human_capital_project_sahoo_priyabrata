@@ -46,6 +46,34 @@ graph TD
 
 ---
 
+## 🔄 Backend Application Workflow
+
+The API follows a strict request-response lifecycle ensuring performance, sanitization, and security at every layer:
+
+```mermaid
+sequenceDiagram
+    participant Client as Frontend / Axios
+    participant Router as Express Router
+    participant MW as Security Middleware
+    participant Validator as Zod Validator
+    participant Controller
+    participant Service as Business Service
+    participant DB as MongoDB Atlas
+
+    Client->>Router: HTTP Request (e.g. GET /api/v1/stats)
+    Router->>MW: Check Rate Limit & CORS
+    MW->>MW: Verify JWT Auth & RBAC
+    MW->>Validator: Sanitize & Validate Payload
+    Validator->>Controller: Route to Handler
+    Controller->>Service: Call Business Logic
+    Service->>DB: Execute Aggregation Pipeline
+    DB-->>Service: Return BSON Data
+    Service-->>Controller: Return Formatted Data
+    Controller-->>Client: 200 OK (JSON Response)
+```
+
+---
+
 ## 🗄️ Database Models & Indexing Strategy
 
 We utilize **Mongoose** for schema definition, dynamic validations, and compound indexing:
