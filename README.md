@@ -86,29 +86,83 @@ Unlike standard dashboards, this system utilizes complex **MongoDB Aggregation P
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Comprehensive System Architecture
+
+The platform operates on a tightly integrated **MERN Stack** architecture. It is designed to process high-volume queries with low latency using native MongoDB aggregations, protected by a hardened Express API gateway, and served to the user via a React Single-Page Application (SPA).
 
 ```mermaid
-graph TD
-    A[Client: React/Vite] -->|HTTPS/Axios| B[Nginx/Reverse Proxy]
-    B --> C[Backend: Node/Express]
-    C -->|Middleware| D{Security Layers}
-    D -->|JWT/RBAC| E[Controller Logic]
-    E -->|Mongoose| F[MongoDB Atlas]
-    F -->|Aggregation| E
-    E -->|JSON Response| A
-    subgraph "State Management"
-    A --- G[Redux Toolkit Store]
+graph TB
+    subgraph "Client Tier (Frontend)"
+        UI[React UI Components]
+        Redux[(Redux Global State)]
+        Vite[Vite Build Engine]
+        Axios[Axios Interceptors]
+        UI <--> Redux
+        Redux <--> Axios
+    end
+
+    subgraph "Network & Hosting Tier"
+        Vercel[Vercel Edge CDN]
+        Render[Render API Cloud]
+        Axios -->|HTTPS REST| Vercel
+        Vercel -->|Proxy / Rewrite| Render
+    end
+
+    subgraph "Application Tier (Backend)"
+        Express[Node.js / Express Router]
+        Security[Helmet, CORS, Rate Limit]
+        Zod[Zod Payload Validation]
+        Controllers[MVC Controllers]
+        Services[Business Logic & Pipelines]
+        
+        Render --> Express
+        Express --> Security
+        Security --> Zod
+        Zod --> Controllers
+        Controllers --> Services
+    end
+
+    subgraph "Database Tier"
+        Mongo[(MongoDB Atlas Cluster)]
+        Services -->|Mongoose ODM| Mongo
+        Mongo -->|BSON Aggregations| Services
     end
 ```
 
-### Request Lifecycle Flow
+---
 
-1. **Frontend**: Action triggered -> Redux Dispatch -> Axios Interceptor attaches JWT.
-2. **Backend**: Express receives request -> Morgan logs -> Rate Limiter checks.
-3. **Security**: JWT Verification -> RBAC Check (Admin/User).
-4. **Logic**: Controller executes service -> Mongoose performs indexed query/aggregation.
-5. **Response**: Formatted JSON sent back with appropriate HTTP status codes.
+## 🔄 Complete Application Workflow
+
+The diagram below illustrates the exact lifecycle of a secure, data-intensive request flowing through the entire stack, from the user clicking a button to the database aggregating millions of records.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant React as React Frontend
+    participant Vercel as Edge CDN
+    participant API as Express API
+    participant DB as MongoDB Atlas
+
+    User->>React: Change Filter (e.g., Select "Inflation")
+    React->>React: Dispatch Redux Action
+    React->>Vercel: GET /api/v1/stats/trending (Bearer Token)
+    Vercel->>API: Proxy Request to Backend
+    
+    rect rgb(30, 41, 59)
+    Note over API: API Security Pipeline
+    API->>API: 1. Rate Limit Check
+    API->>API: 2. Verify JWT Signature
+    API->>API: 3. Verify RBAC Permissions
+    API->>API: 4. Sanitize Input & Zod Schema
+    end
+
+    API->>DB: Execute Aggregation Pipeline
+    DB-->>API: Return Clustered BSON Array
+    API-->>Vercel: 200 OK + JSON
+    Vercel-->>React: Forward Response Payload
+    React->>React: Update Global Redux Store
+    React-->>User: Re-render Charts with Animations
+```
 
 ---
 
