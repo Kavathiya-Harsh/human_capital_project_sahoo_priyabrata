@@ -166,6 +166,34 @@ sequenceDiagram
 
 ---
 
+## 📈 Data Analytics & Business Workflow
+
+The system provides a seamless end-to-end data processing workflow for analysts, visualized below:
+
+```mermaid
+graph LR
+    A[User Auth / Registration] --> B[Dashboard Hub]
+    B --> C[Select Economic Indicator]
+    C --> D[Geo-filtering / Countries]
+    D --> E[Date Range Triggers]
+    E --> F[MongoDB Pipeline Aggregation]
+    F --> G[Interactive Chart Rendering]
+    G --> H[Report Generation]
+
+    classDef default fill:#1e293b,stroke:#475569,stroke-width:1px,color:#f8fafc;
+    classDef auth fill:#2563eb,stroke:#1d4ed8,stroke-width:1px,color:#fff;
+    classDef filter fill:#8b5cf6,stroke:#7c3aed,stroke-width:1px,color:#fff;
+    classDef processing fill:#d97706,stroke:#b45309,stroke-width:1px,color:#fff;
+    classDef success fill:#059669,stroke:#047857,stroke-width:1px,color:#fff;
+
+    class A auth;
+    class B,C,D,E filter;
+    class F processing;
+    class G,H success;
+```
+
+---
+
 ## 📁 Project Structure
 
 ### 🖥️ Frontend Architecture
@@ -262,27 +290,60 @@ Configure the `.env` settings inside their respective root directories to succes
 
 ---
 
-## 🗄️ Database Schema Overview
+## 🗄️ Database Design & Entity Relationship Diagram
 
-### 📈 Price Analysis Schema
+The platform utilizes a highly normalized, scalable MongoDB schema design enforced via Mongoose, ensuring data integrity across users, countries, indicators, and hundreds of thousands of price records.
 
+```mermaid
+erDiagram
+    USERS ||--o{ ACTIVITY_LOGS : logs
+    USERS {
+        ObjectId _id PK
+        string name
+        string email
+        string password "Hashed"
+        enum role "admin, user"
+        boolean isVerified
+        date createdAt
+    }
+    
+    COUNTRIES ||--o{ PRICES : has
+    COUNTRIES {
+        ObjectId _id PK
+        string name
+        string code UK
+        string region
+    }
+    
+    INDICATORS ||--o{ PRICES : has
+    INDICATORS {
+        ObjectId _id PK
+        string name UK
+        string category
+        string description
+        string unit
+    }
+    
+    PRICES {
+        ObjectId _id PK
+        ObjectId indicator_id FK
+        ObjectId country_id FK
+        number year
+        number value
+        object metadata
+        date createdAt
+    }
+```
+
+### 📈 Price Analysis Compound Indexing
+
+To handle 190,000+ records at scale, the database utilizes advanced compound indexing on the `Prices` collection for `O(log n)` query speeds:
 ```javascript
-const priceSchema = new mongoose.Schema(
-  {
-    indicator: { type: String, required: true, index: true },
-    country: { type: String, required: true, index: true },
-    year: { type: Number, required: true },
-    value: { type: Number, required: true },
-    metadata: {
-      source: String,
-      reliability: Number,
-    },
-  },
-  { timestamps: true },
-);
-
-// Compound indexing for rapid analytical lookups
+// Optimized for analytical timeline lookups
 priceSchema.index({ country: 1, year: -1 });
+
+// Optimized for indicator distribution
+priceSchema.index({ indicator: 1, country: 1 });
 ```
 
 ---
