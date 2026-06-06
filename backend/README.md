@@ -74,37 +74,84 @@ sequenceDiagram
 
 ---
 
-## 🗄️ Database Models & Indexing Strategy
+## 🗄️ Database Design & Entity Relationship Diagram
 
-We utilize **Mongoose** for schema definition, dynamic validations, and compound indexing:
+The backend acts as the custodian of data integrity. We utilize a highly normalized MongoDB schema enforced strictly via Mongoose ODMs and custom Zod validation layers.
 
-### 1. `User` Schema (`models/user.model.js`)
-Handles system profiles, authentication credentials, and session tracking:
-*   `name`: String, required, trimmed.
-*   `email`: String, required, lowercase, unique, regex format validation.
-*   `password`: String, selected false by default to prevent accidental leaks.
-*   `role`: Enum (`'user'`, `'admin'`), defaults to `'user'`.
-*   `isVerified`: Boolean, defaults to `false`.
-*   **Middleware Hook**: Pre-save password hashing using `bcryptjs` (salt factor 10).
+```mermaid
+erDiagram
+    USERS ||--o{ ACTIVITY_LOGS : generates
+    USERS {
+        ObjectId _id PK
+        string name
+        string email UK
+        string password "Hashed"
+        enum role "admin, user"
+        boolean isVerified
+        date createdAt
+    }
+    
+    COUNTRIES ||--o{ PRICES : contains
+    COUNTRIES {
+        ObjectId _id PK
+        string name UK
+        string code UK "ISO"
+        string region
+    }
+    
+    INDICATORS ||--o{ PRICES : measures
+    INDICATORS {
+        ObjectId _id PK
+        string name UK
+        string category
+        string description
+        string unit
+    }
+    
+    PRICES {
+        ObjectId _id PK
+        ObjectId indicator_id FK
+        ObjectId country_id FK
+        number year
+        number value
+        object metadata "Source/Reliability"
+        date createdAt
+    }
+```
 
-### 2. `Price` Schema (`models/price.model.js`)
-Houses consumer price records and index valuations:
-*   `indicator`: String, required, indexed (B-tree).
-*   `country`: String, required, indexed (B-tree).
-*   `year`: Number, required.
-*   `value`: Number, required.
-*   `metadata`: Object mapping `source` (String) and `reliability` (Number).
-*   **Compound Indexes**: Optimized for rapid analytical filters:
-    ```javascript
-    priceSchema.index({ country: 1, year: -1 });
-    priceSchema.index({ indicator: 1, country: 1 });
-    ```
+### 📈 Compound Indexing Strategy
 
-### 3. `Country` Schema (`models/country.model.js`)
-Reference details for geo-economic boundaries:
-*   `name`: String, required, unique.
-*   `code`: String, required, unique, uppercase (ISO standards).
-*   `region`: String, required.
+To handle analytical aggregations spanning millions of permutations over 190,000+ documents, we rely on advanced B-Tree compound indexing:
+
+*   **Geo-Temporal Lookups**: `priceSchema.index({ country: 1, year: -1 })` ensures timeline queries perform in `O(log n)`.
+*   **Indicator Distributions**: `priceSchema.index({ indicator: 1, country: 1 })` optimizes grouping and clustering pipelines.
+
+---
+
+## 📈 Backend Data Processing Pipeline
+
+When handling complex aggregations, the backend processes queries through a strict sequential pipeline to ensure high performance and data sanitization:
+
+```mermaid
+graph LR
+    A[Incoming JWT Request] --> B[Zod Schema Validator]
+    B --> C[NoSQL Sanitizer Hook]
+    C --> D[Mongoose Match Stage]
+    D --> E[BSON Aggregation Pipeline]
+    E --> F[In-Memory Sort & Limit]
+    F --> G[JSON Payload Formatting]
+
+    classDef default fill:#1e293b,stroke:#475569,stroke-width:1px,color:#f8fafc;
+    classDef security fill:#2563eb,stroke:#1d4ed8,stroke-width:1px,color:#fff;
+    classDef sanitization fill:#8b5cf6,stroke:#7c3aed,stroke-width:1px,color:#fff;
+    classDef db fill:#059669,stroke:#047857,stroke-width:1px,color:#fff;
+    classDef format fill:#d97706,stroke:#b45309,stroke-width:1px,color:#fff;
+
+    class A,B security;
+    class C sanitization;
+    class D,E,F db;
+    class G format;
+```
 
 ---
 
