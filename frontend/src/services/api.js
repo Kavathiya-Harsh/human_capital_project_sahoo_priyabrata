@@ -1,9 +1,18 @@
 import axios from 'axios';
 import { local } from './storage';
 
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  (import.meta.env.PROD ? '/api/v1' : 'http://localhost:5000/api/v1');
+// In production, fallback to relative path so it hits the same origin 
+// OR use VITE_API_URL only if it's not localhost (in case it was baked in from .env)
+let API_URL = import.meta.env.PROD ? '/api/v1' : 'http://localhost:5000/api/v1';
+
+if (import.meta.env.VITE_API_URL) {
+  if (import.meta.env.PROD && import.meta.env.VITE_API_URL.includes('localhost')) {
+    // Ignore localhost in production (baked in from .env by mistake)
+    API_URL = '/api/v1';
+  } else {
+    API_URL = import.meta.env.VITE_API_URL;
+  }
+}
 
 // Create a global Axios instance
 const api = axios.create({
