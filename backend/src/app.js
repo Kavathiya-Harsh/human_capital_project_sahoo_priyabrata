@@ -119,6 +119,18 @@ app.use(`${API_PREFIX}/import`, importRoutes);
 // ❌ GLOBAL ERROR HANDLING
 // ==========================================
 
+// In production, serve the frontend static files
+if (process.env.NODE_ENV === "production") {
+  const path = require("path");
+  const distPath = path.join(__dirname, "../../frontend/dist");
+  app.use(express.static(distPath));
+
+  // Serve Single Page Application fallback for any non-API routes
+  app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+}
+
 // Handle undefined routes returning a professional 404 response
 app.use(notFoundHandler);
 
