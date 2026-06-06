@@ -26,7 +26,7 @@ const QuickActionsDashboard = () => {
         height: '100%',
         backgroundColor: 'background.paper',
         border: '1px solid',
-        borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+        borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -117,12 +117,12 @@ const QuickActionsDashboard = () => {
                 justifyContent: 'space-between',
                 p: 1.2,
                 borderRadius: '12px',
-                bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)',
+                bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.01)',
                 border: '1px solid',
                 borderColor: 'divider',
                 cursor: 'pointer',
                 '&:hover': {
-                  bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                  bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)',
                   borderColor: 'primary.main',
                 }
               }}

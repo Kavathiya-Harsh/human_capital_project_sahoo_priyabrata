@@ -60,7 +60,7 @@ const PremiumChartsPanel = ({ serverData }) => {
         height: '100%',
         backgroundColor: 'background.paper',
         border: '1px solid',
-        borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+        borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)',
         display: 'flex',
         flexDirection: 'column',
         minHeight: 460,
@@ -108,7 +108,7 @@ const PremiumChartsPanel = ({ serverData }) => {
                 color: timeframe === tf ? 'primary.contrastText' : 'text.secondary',
                 bgcolor: timeframe === tf ? 'primary.main' : 'transparent',
                 boxShadow: timeframe === tf ? '0 4px 10px rgba(255, 96, 56, 0.15)' : 'none',
-                '&:hover': { bgcolor: timeframe === tf ? 'primary.dark' : 'rgba(255,255,255,0.03)' }
+                '&:hover': { bgcolor: timeframe === tf ? 'primary.dark' : 'rgba(255,255,255,0.10)' }
               }}
             >
               {tf}
@@ -168,7 +168,7 @@ const PremiumChartsPanel = ({ serverData }) => {
 
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke={theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'}
+              stroke={theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.03)'}
               vertical={false}
             />
 

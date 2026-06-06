@@ -20,7 +20,7 @@ const TelemetryHeatmap = ({ selectedCountry, onSelectCountry }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.01) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px)',
         backgroundSize: '12px 12px',
       }}
     >
