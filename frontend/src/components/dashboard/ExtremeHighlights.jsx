@@ -22,7 +22,7 @@ const ExtremeHighlights = ({ highestValue, lowestValue, averageValue, extraLoadi
             height: '100%',
             backgroundColor: 'background.paper',
             border: '1px solid',
-            borderColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+            borderColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)',
             position: 'relative',
             overflow: 'hidden',
           }}
@@ -70,7 +70,7 @@ const ExtremeHighlights = ({ highestValue, lowestValue, averageValue, extraLoadi
             height: '100%',
             backgroundColor: 'background.paper',
             border: '1px solid',
-            borderColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+            borderColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)',
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
@@ -116,7 +116,7 @@ const ExtremeHighlights = ({ highestValue, lowestValue, averageValue, extraLoadi
             height: '100%',
             backgroundColor: 'background.paper',
             border: '1px solid',
-            borderColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+            borderColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)',
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>

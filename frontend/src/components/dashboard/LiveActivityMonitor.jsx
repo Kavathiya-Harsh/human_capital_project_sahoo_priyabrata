@@ -60,7 +60,7 @@ const LiveActivityMonitor = () => {
         height: '100%',
         backgroundColor: 'background.paper',
         border: '1px solid',
-        borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+        borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)',
         display: 'flex',
         flexDirection: 'column',
         minHeight: 400,
@@ -76,7 +76,7 @@ const LiveActivityMonitor = () => {
               justifyContent: 'center',
               p: 1.2,
               borderRadius: '16px',
-              bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+              bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)',
               color: 'text.primary',
             }}
           >
@@ -122,7 +122,7 @@ const LiveActivityMonitor = () => {
           overflowY: 'auto',
           maxHeight: 280,
           border: '1px solid',
-          borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)',
+          borderColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.04)',
           boxShadow: theme.palette.mode === 'dark' ? 'inset 0 2px 8px rgba(0,0,0,0.8)' : 'inset 0 2px 6px rgba(0,0,0,0.05)',
         }}
       >
