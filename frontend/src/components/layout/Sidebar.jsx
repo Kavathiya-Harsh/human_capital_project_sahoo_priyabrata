@@ -46,46 +46,45 @@ const Sidebar = () => {
     <Box sx={{ px: 2 }}>
       <Toolbar sx={{ mb: 2 }} />
       <List>
-        {menuItems.map((item, index) => (
-          <motion.div
-            key={item.text}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <ListItem disablePadding sx={{ mb: 2 }}>
-              <ListItemButton
-                component={NavLink}
-                to={item.path}
-                onClick={() => {
-                  if (window.innerWidth < 600) handleDrawerToggle();
-                }}
-                sx={{
-                  borderRadius: 3,
-                  py: 1.5,
-                  transition: 'all 0.3s ease',
-                  '&.active': {
-                    bgcolor: 'transparent',
-                    boxShadow: activeShadow, // Pressed neumorphic effect
-                    color: 'primary.main',
-                    '& .MuiListItemIcon-root': { color: 'primary.main' },
-                  },
-                  '&:hover:not(.active)': {
-                    bgcolor: 'transparent',
-                    transform: 'translateY(-2px)',
-                    boxShadow: isDark
-                      ? '4px 4px 8px #0c0f16, -4px -4px 8px #1e2536'
-                      : '4px 4px 8px #b8c1cf, -4px -4px 8px #ffffff',
-                  },
-                }}
-              >
-                <ListItemIcon sx={{ color: 'text.secondary', minWidth: 46 }}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={<Typography variant="body2" sx={{ fontWeight: 600, color: 'inherit' }}>{item.text}</Typography>} />
-              </ListItemButton>
-            </ListItem>
-          </motion.div>
+        {menuItems.map((item) => (
+          <ListItem key={item.text} disablePadding sx={{ mb: 2 }}>
+            <ListItemButton
+              component={NavLink}
+              to={item.path}
+              onClick={() => {
+                if (window.innerWidth < 600) handleDrawerToggle();
+              }}
+              sx={{
+                borderRadius: 3,
+                py: 1.5,
+                transition: 'all 0.3s ease',
+                '&.active': {
+                  bgcolor: 'transparent',
+                  boxShadow: activeShadow, // Pressed neumorphic effect
+                  color: 'primary.main',
+                  '& .MuiListItemIcon-root': { color: 'primary.main' },
+                },
+                '&:hover:not(.active)': {
+                  bgcolor: 'transparent',
+                  transform: 'translateY(-2px)',
+                  boxShadow: isDark
+                    ? '4px 4px 8px #0c0f16, -4px -4px 8px #1e2536'
+                    : '4px 4px 8px #b8c1cf, -4px -4px 8px #ffffff',
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: 'text.secondary', minWidth: 46 }}>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography variant="body2" sx={{ fontWeight: 600, color: 'inherit' }}>
+                    {item.text}
+                  </Typography>
+                }
+              />
+            </ListItemButton>
+          </ListItem>
         ))}
       </List>
     </Box>

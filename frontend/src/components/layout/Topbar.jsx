@@ -40,29 +40,23 @@ const Topbar = () => {
         </IconButton>
 
         <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1.5 }}>
-              <FiActivity size={24} color="#FF6038" />
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  fontWeight: 800,
-                  letterSpacing: '-0.03em',
-                  background: `linear-gradient(45deg, #FF6038, #00E5FF)`,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}
-              >
-                Human Capital Analytics
-              </Typography>
-            </Box>
-          </motion.div>
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1.5 }}>
+            <FiActivity size={24} color="#FF6038" />
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+                background: `linear-gradient(45deg, #FF6038, #00E5FF)`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              Human Capital Analytics
+            </Typography>
+          </Box>
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
