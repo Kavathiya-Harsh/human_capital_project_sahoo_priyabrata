@@ -56,12 +56,12 @@ const searchFrequencyService = async (queryObj) => {
   return { data, pagination: {} };
 };
 
-const advancedCombinedSearchService = async (queryObj) => {
+const advancedCombinedSearchService = async (_queryObj) => {
   // Skeleton ready for complex $and / $or dynamic aggregations
   return { data: [], pagination: {} };
 };
 
-const globalSearchService = async (queryObj) => {
+const globalSearchService = async (_queryObj) => {
   return { data: [], pagination: {} };
 };
 

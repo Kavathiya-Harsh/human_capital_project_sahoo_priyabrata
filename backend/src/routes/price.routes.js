@@ -4,9 +4,6 @@ const rateLimit = require("express-rate-limit");
 
 const priceController = require("../controllers/price.controller");
 const { protect, verifyJWT } = require("../middlewares/auth.middleware");
-const { authorizeRoles } = require("../middlewares/role.middleware");
-
-const { validateRequest } = require("../middlewares/validate.middleware");
 
 const apiLimiter = rateLimit({ windowMs: 1 * 60 * 1000, max: 500 });
 const spamLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 10 });

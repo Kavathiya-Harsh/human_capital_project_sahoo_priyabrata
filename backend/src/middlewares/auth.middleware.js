@@ -43,7 +43,7 @@ const protect = asyncHandler(async (req, res, next) => {
     }
 
     next();
-  } catch (error) {
+  } catch (_) {
     return errorResponse(res, 401, "Not authorized, invalid or expired token");
   }
 });
@@ -69,7 +69,7 @@ const verifyJWT = (req, res, next) => {
   try {
     req.user = jwt.verify(token, process.env.JWT_SECRET);
     next();
-  } catch (err) {
+  } catch (_) {
     return errorResponse(res, 401, "Invalid or expired token");
   }
 };

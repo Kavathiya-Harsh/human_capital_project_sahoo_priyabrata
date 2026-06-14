@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Box, Drawer, List, ListItem, ListItemButton,
-  ListItemIcon, ListItemText, Toolbar, useTheme, Typography,
+  ListItemIcon, ListItemText, Toolbar, Typography,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +22,6 @@ const menuItems = [
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const theme = useTheme();
   const { sidebarOpen, themeMode } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
 
@@ -60,7 +59,7 @@ const Sidebar = () => {
       </Typography>
 
       <List sx={{ flex: 1 }}>
-        {menuItems.map((item, i) => (
+        {menuItems.map((item) => (
           <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
             <motion.div
               style={{ width: '100%' }}

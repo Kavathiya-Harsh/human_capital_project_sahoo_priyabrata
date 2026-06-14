@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react';
 import { Box, Typography, Switch, Chip, Tooltip, IconButton } from '@mui/material';
 import { useSelector } from 'react-redux';

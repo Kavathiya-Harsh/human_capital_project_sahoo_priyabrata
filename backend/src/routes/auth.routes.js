@@ -3,7 +3,7 @@ const router = express.Router();
 const rateLimit = require("express-rate-limit");
 
 const authController = require("../controllers/auth.controller");
-const { protect, verifyJWT } = require("../middlewares/auth.middleware");
+const { verifyJWT } = require("../middlewares/auth.middleware");
 const { validateRequest } = require("../middlewares/validate.middleware");
 
 const {
@@ -18,7 +18,6 @@ const {
 
 // Rate limiters to prevent brute force and spam
 const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 5 });
-const registerLimiter = rateLimit({ windowMs: 60 * 60 * 1000, max: 3 });
 
 // ==========================================
 // 🔓 PUBLIC ROUTES

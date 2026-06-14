@@ -13,7 +13,7 @@ import { ThemeContextProvider } from './context/ThemeContext';
 const AppContent = () => {
   const dispatch = useDispatch();
   const { themeMode, appearance } = useSelector((state) => state.ui);
-  const { isAuthenticated, token } = useSelector((state) => state.auth);
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     // Auto-login: Validates JWT token and fetches user profile on initial mount
@@ -253,7 +253,7 @@ const AppContent = () => {
         },
       },
     });
-  }, [themeMode, appearance.neumorphism]);
+  }, [themeMode]);
 
   return (
     <ThemeProvider theme={theme}>

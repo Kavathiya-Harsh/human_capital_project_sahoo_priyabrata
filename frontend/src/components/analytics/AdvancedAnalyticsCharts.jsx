@@ -52,10 +52,7 @@ const ttStyle = (theme) => ({
   boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
 });
 
-const gridStyle = {
-  strokeDasharray: '3 3',
-  vertical: false,
-};
+
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 const AdvancedAnalyticsCharts = () => {

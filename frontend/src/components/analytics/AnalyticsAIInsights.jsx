@@ -1,11 +1,11 @@
 import React from 'react';
-import { Paper, Typography, Box, useTheme, Chip, Button } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Paper, Typography, Box, Chip, Button } from '@mui/material';
+
 import { FiCpu, FiAlertTriangle, FiArrowUpRight, FiZap, FiSettings } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 
 const AnalyticsAIInsights = () => {
-  const theme = useTheme();
+
   const { themeMode, appearance } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
   const isNeu = appearance?.neumorphism !== false;

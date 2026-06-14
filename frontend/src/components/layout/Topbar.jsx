@@ -19,10 +19,6 @@ const Topbar = () => {
     navigate('/login');
   };
 
-  /* ── theme-aware shadow tokens ── */
-  const insetShadow = isDark
-    ? 'inset 3px 3px 7px rgba(0,0,0,0.6), inset -2px -2px 5px rgba(255,255,255,0.04)'
-    : 'inset 3px 3px 7px #b8c1cf, inset -3px -3px 7px #ffffff';
 
   return (
     <AppBar

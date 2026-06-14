@@ -32,15 +32,20 @@ const LoadingFallback = () => <Loader fullScreen={true} message="Loading Modules
 // High-fidelity page transitions wrapper with minimum 1.1s loading duration
 const PageLoader = ({ children }) => {
   const location = useLocation();
+  const [prevLocation, setPrevLocation] = useState(location.pathname);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  if (prevLocation !== location.pathname) {
+    setPrevLocation(location.pathname);
     setLoading(true);
+  }
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1100);
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, [prevLocation]);
 
   if (loading) {
     const path = location.pathname;

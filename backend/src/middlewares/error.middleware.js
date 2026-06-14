@@ -1,5 +1,5 @@
 // Global error handler catching all unhandled application exceptions
-const globalErrorHandler = (err, req, res, next) => {
+const globalErrorHandler = (err, req, res, _next) => {
   // Always log the error for deep debugging during development
   console.error("🔥 ERROR CAUGHT BY MIDDLEWARE:", err);
 

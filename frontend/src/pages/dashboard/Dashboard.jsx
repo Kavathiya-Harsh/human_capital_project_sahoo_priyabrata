@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Typography, Box, Paper, Button, Chip, useTheme } from '@mui/material';
+import { Grid, Typography, Box, Paper, Button, Chip } from '@mui/material';
 import SEOMeta from '../../components/common/SEOMeta';
 import { FiTrendingUp, FiActivity, FiGlobe, FiDatabase, FiUsers, FiArrowUpRight, FiArrowDownRight } from 'react-icons/fi';
 import { motion } from 'framer-motion';
@@ -22,7 +22,6 @@ import ExtremeHighlights from '../../components/dashboard/ExtremeHighlights';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const theme = useTheme();
 
   const { analyticsData, loading: dataLoading, error: dataError } = useSelector(
     (state) => state.data
@@ -33,8 +32,6 @@ const Dashboard = () => {
   // Extreme value states fetched from MongoDB
   const [highestValue, setHighestValue] = useState(null);
   const [lowestValue, setLowestValue] = useState(null);
-  const [topCountries, setTopCountries] = useState([]);
-  const [topIndicators, setTopIndicators] = useState([]);
   const [extraLoading, setExtraLoading] = useState(false);
 
   useEffect(() => {
@@ -48,17 +45,13 @@ const Dashboard = () => {
     const fetchExtraStats = async () => {
       setExtraLoading(true);
       try {
-        const [highestRes, lowestRes, countriesRes, indicatorsRes] = await Promise.all([
+        const [highestRes, lowestRes] = await Promise.all([
           api.get('/stats/highest-value'),
           api.get('/stats/lowest-value'),
-          api.get('/stats/top-countries'),
-          api.get('/stats/top-indicators'),
         ]);
 
         setHighestValue(highestRes.data.data);
         setLowestValue(lowestRes.data.data);
-        setTopCountries(countriesRes.data.data);
-        setTopIndicators(indicatorsRes.data.data);
       } catch (err) {
         console.error('Failed to fetch premium dashboard stats:', err);
       } finally {

@@ -91,15 +91,15 @@ const DataListing = () => {
     setIsFormModalOpen(true);
   };
 
-  const handleEditClick = (record) => {
+  const handleEditClick = useCallback((record) => {
     setSelectedRecord(record);
     setIsFormModalOpen(true);
-  };
+  }, []);
 
-  const handleDeleteClick = (record) => {
+  const handleDeleteClick = useCallback((record) => {
     setSelectedRecord(record);
     setIsDeleteModalOpen(true);
-  };
+  }, []);
 
   const handleFormSubmit = async (formData) => {
     setFormLoading(true);
@@ -124,7 +124,7 @@ const DataListing = () => {
           toast.error(resultAction.payload || 'Failed to add record');
         }
       }
-    } catch (err) {
+    } catch {
       toast.error('An unexpected error occurred.');
     } finally {
       setFormLoading(false);
@@ -142,7 +142,7 @@ const DataListing = () => {
       } else {
         toast.error(resultAction.payload || 'Failed to delete record');
       }
-    } catch (err) {
+    } catch {
       toast.error('An unexpected error occurred.');
     } finally {
       setFormLoading(false);
@@ -173,10 +173,10 @@ const DataListing = () => {
       </Typography>
 
       <Grid container spacing={3} sx={{ mb: 4, mt: 1 }}>
-        <Grid xs={12} md={4}>
+        <Grid item xs={12} md={4}>
           <StatCard title="Total Records" value={totalRecords} icon={<FiDatabase />} />
         </Grid>
-        <Grid xs={12} md={8}>
+        <Grid item xs={12} md={8}>
           <DataFilterBar 
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}

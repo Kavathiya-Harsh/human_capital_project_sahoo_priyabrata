@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Paper, Typography, Box, Badge, IconButton, useTheme } from '@mui/material';
 import { FiTerminal, FiPlay, FiPause, FiActivity } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -16,20 +16,15 @@ const MOCK_ROUTES = [
 
 const LiveActivityMonitor = () => {
   const theme = useTheme();
-  const [logs, setLogs] = useState([]);
-  const [isLive, setIsLive] = useState(true);
-
-  // Initialize with some log entries
-  useEffect(() => {
-    const initialLogs = Array.from({ length: 5 }).map((_, idx) => {
+  const [logs, setLogs] = useState(() => {
+    return Array.from({ length: 5 }).map((_, idx) => {
       const route = MOCK_ROUTES[Math.floor(Math.random() * MOCK_ROUTES.length)];
       const latency = Math.floor(Math.random() * 35) + 5;
       const timestamp = new Date(Date.now() - (5 - idx) * 3000).toLocaleTimeString();
       return { id: idx, ...route, latency, timestamp };
     });
-    setLogs(initialLogs);
-  }, []);
-
+  });
+  const [isLive, setIsLive] = useState(true);
   // Periodic log adding
   useEffect(() => {
     if (!isLive) return;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Box, useTheme, LinearProgress } from '@mui/material';
+import { Paper, Typography, Box, LinearProgress } from '@mui/material';
 import { FiTrendingUp, FiServer, FiGlobe, FiCpu, FiCheckCircle, FiList, FiClock, FiDatabase, FiLayers } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
@@ -35,10 +35,7 @@ const POOL_METRICS = [
 ];
 
 /* ─── shared card ─────────────────────────────────────────────────────────── */
-const PanelCard = ({ icon: Icon, iconClass, title, children, delay = 0, bg }) => {
-  const { themeMode, appearance } = useSelector((s) => s.ui);
-  const isDark = themeMode === 'dark';
-  const isNeu  = appearance?.neumorphism !== false;
+const PanelCard = ({ icon: Icon, iconClass, title, children, delay = 0 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 18 }}

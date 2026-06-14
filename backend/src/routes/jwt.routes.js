@@ -3,11 +3,6 @@ const router = express.Router();
 
 const jwtController = require("../controllers/jwt.controller");
 const { verifyJWT } = require("../middlewares/auth.middleware");
-const { validateRequest } = require("../middlewares/validate.middleware");
-const {
-  validateJWT,
-  validateRefreshToken,
-} = require("../validators/jwt.validator");
 
 // Dedicated JWT lifecycle management routes
 router.post("/generate-token", jwtController.generateToken);

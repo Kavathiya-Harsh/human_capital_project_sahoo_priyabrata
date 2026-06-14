@@ -53,7 +53,7 @@ export const local = {
     try {
       const raw = localStorage.getItem('hca_appearance');
       return raw ? JSON.parse(raw) : { animations: true, density: 'comfortable', glassIntensity: 60, neumorphism: true };
-    } catch (e) {
+    } catch {
       return { animations: true, density: 'comfortable', glassIntensity: 60, neumorphism: true };
     }
   },
@@ -86,7 +86,7 @@ export const local = {
 
   /** Clear all app-related keys on logout */
   clearAll: () => {
-    ['hca_token', 'hca_theme', 'hca_session'].forEach((key) => localStorage.removeItem(key));
+    ['hca_token', 'hca_theme', 'hca_session', 'hca_appearance'].forEach((key) => localStorage.removeItem(key));
   },
 };
 
@@ -104,7 +104,7 @@ export const session = {
     try {
       const raw = sessionStorage.getItem('hca_filters');
       return raw ? JSON.parse(raw) : null;
-    } catch (e) {
+    } catch {
       sessionStorage.removeItem('hca_filters');
       return null;
     }
@@ -123,7 +123,7 @@ export const session = {
     try {
       const raw = sessionStorage.getItem(`hca_form_${formId}`);
       return raw ? JSON.parse(raw) : null;
-    } catch (e) {
+    } catch {
       sessionStorage.removeItem(`hca_form_${formId}`);
       return null;
     }

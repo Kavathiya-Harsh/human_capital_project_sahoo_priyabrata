@@ -49,14 +49,14 @@ const uiSlice = createSlice({
       if (key in state.notifs) {
         state.notifs[key] = !state.notifs[key];
         // Use current() to extract plain object from Immer draft before serializing
-        try { localStorage.setItem('hca_notifs', JSON.stringify(current(state.notifs))); } catch (_) {}
+        try { localStorage.setItem('hca_notifs', JSON.stringify(current(state.notifs))); } catch { /* ignore */ }
       }
     },
     toggleAiPref: (state, action) => {
       const key = action.payload;
       if (key in state.aiPrefs) {
         state.aiPrefs[key] = !state.aiPrefs[key];
-        try { localStorage.setItem('hca_aiprefs', JSON.stringify(current(state.aiPrefs))); } catch (_) {}
+        try { localStorage.setItem('hca_aiprefs', JSON.stringify(current(state.aiPrefs))); } catch { /* ignore */ }
       }
     },
   },

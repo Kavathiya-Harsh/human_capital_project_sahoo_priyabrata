@@ -1,11 +1,11 @@
 import React from 'react';
-import { Grid, Paper, Box, Typography, useTheme } from '@mui/material';
+import { Grid, Paper, Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { FiDatabase, FiGlobe, FiTrendingUp, FiCpu, FiActivity, FiClock } from 'react-icons/fi';
 
 const AnalyticsKPIs = ({ analyticsData, loading }) => {
-  const theme = useTheme();
+
   const { themeMode, appearance } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
   const isNeu = appearance?.neumorphism !== false;

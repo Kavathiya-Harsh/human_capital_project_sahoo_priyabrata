@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const jwt = require("jsonwebtoken");
 
 const registerUserService = async (userData) => {
   const { name, email, password, role } = userData;
@@ -34,7 +35,7 @@ const loginUserService = async (credentials) => {
   return { data: user, token };
 };
 
-const logoutUserService = async (userId) => {
+const logoutUserService = async (_userId) => {
   // In a production app with redis, you would blacklist the token here
   return true;
 };
@@ -49,12 +50,38 @@ const forgotPasswordService = async (email) => {
   return true;
 };
 
-const resetPasswordService = async (token, newPassword) => {
+const resetPasswordService = async (_token, _newPassword) => {
   return true;
 };
 
 const refreshTokenService = async (oldToken) => {
-  return { token: "new-jwt-token" };
+  if (!oldToken) {
+    const error = new Error("Refresh token is required");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  let decoded;
+  try {
+    decoded = jwt.verify(
+      oldToken,
+      process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET
+    );
+  } catch {
+    const error = new Error("Invalid or expired refresh token. Please log in again.");
+    error.statusCode = 401;
+    throw error;
+  }
+
+  const user = await User.findById(decoded.id);
+  if (!user) {
+    const error = new Error("User belonging to this token no longer exists");
+    error.statusCode = 401;
+    throw error;
+  }
+
+  const token = user.generateAccessToken();
+  return { token };
 };
 
 const getCurrentUserService = async (userId) => {
@@ -67,11 +94,11 @@ const getCurrentUserService = async (userId) => {
   return user;
 };
 
-const sendOTPService = async (email) => {
+const sendOTPService = async (_email) => {
   return true;
 };
 
-const verifyOTPService = async (email, otp) => {
+const verifyOTPService = async (_email, _otp) => {
   return true;
 };
 

@@ -18,7 +18,7 @@ import GlobalAnalyticsPanel from '../../components/analytics/GlobalAnalyticsPane
 const Analytics = () => {
   const dispatch = useDispatch();
   const { analyticsData, loading, error } = useSelector((state) => state.data);
-  const { themeMode, appearance } = useSelector((state) => state.ui);
+  const { appearance } = useSelector((state) => state.ui);
   const isNeu = appearance?.neumorphism !== false;
 
   useEffect(() => {

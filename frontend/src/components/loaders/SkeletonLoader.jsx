@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 export * from '../ui/skeletons/SkeletonCore';
 export * from '../ui/skeletons/CardSkeleton';
 export * from '../ui/skeletons/TableSkeleton';

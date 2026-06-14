@@ -57,7 +57,15 @@ api.interceptors.response.use(
     }
 
     // If the server returns 401 Unauthorized, the token is invalid or expired
-    if (error.response && error.response.status === 401) {
+    // Skip redirect for auth routes to avoid infinite redirect loops on login/register
+    const isAuthRoute = config?.url && (
+      config.url.includes('/auth/login') ||
+      config.url.includes('/auth/register') ||
+      config.url.includes('/auth/forgot-password') ||
+      config.url.includes('/auth/reset-password') ||
+      config.url.includes('/auth/refresh-token')
+    );
+    if (error.response && error.response.status === 401 && !isAuthRoute) {
       local.clearAll();
       // Redirect to login page to force re-authentication
       window.location.href = '/login';

@@ -35,10 +35,10 @@ const getAdminDataService = async (userId) => {
 const getUserDataService = async (userId) => {
   return { userId, user: true };
 };
-const verifyAdminRoleService = async (userId) => {
+const verifyAdminRoleService = async (_userId) => {
   return { verified: true, role: "admin" };
 };
-const verifyUserRoleService = async (userId) => {
+const verifyUserRoleService = async (_userId) => {
   return { verified: true, role: "user" };
 };
 

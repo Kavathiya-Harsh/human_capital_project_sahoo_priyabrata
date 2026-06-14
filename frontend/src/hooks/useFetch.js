@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import api from '../services/api';
 
 /**
@@ -11,7 +11,7 @@ const useFetch = (url) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await api.get(url);
@@ -22,11 +22,11 @@ const useFetch = (url) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [url]);
 
   useEffect(() => {
     if (url) fetchData();
-  }, [url]);
+  }, [url, fetchData]);
 
   return { data, loading, error, refetch: fetchData };
 };

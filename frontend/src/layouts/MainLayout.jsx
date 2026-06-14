@@ -4,8 +4,6 @@ import { Box, CssBaseline, Toolbar } from '@mui/material';
 import Topbar from '../components/layout/Topbar';
 import Sidebar from '../components/layout/Sidebar';
 
-const drawerWidth = 260;
-
 const MainLayout = () => (
   <Box sx={{ display: 'flex', width: '100%', minHeight: '100vh', bgcolor: 'background.default' }}>
     <CssBaseline />
