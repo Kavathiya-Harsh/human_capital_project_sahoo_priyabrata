@@ -55,9 +55,9 @@ const AIAnalyticsAssistant = () => {
               justifyContent: 'center',
               p: 1.2,
               borderRadius: '16px',
-              background: 'linear-gradient(135deg, #FF6038 0%, #A855F7 100%)',
+              background: 'linear-gradient(135deg, #10B981 0%, #00E5FF 100%)',
               color: 'white',
-              boxShadow: '0 8px 16px rgba(255, 96, 56, 0.25)',
+              boxShadow: '0 8px 20px rgba(16, 185, 129, 0.3)',
             }}
           >
             <FiZap size={20} className="animate-pulse" />
@@ -98,7 +98,7 @@ const AIAnalyticsAssistant = () => {
             fontSize: '0.78rem',
             color: activeTab === 'insights' ? 'primary.contrastText' : 'text.secondary',
             bgcolor: activeTab === 'insights' ? 'primary.main' : 'transparent',
-            boxShadow: activeTab === 'insights' ? '0 4px 12px rgba(255, 96, 56, 0.2)' : 'none',
+            boxShadow: activeTab === 'insights' ? '0 4px 12px rgba(16, 185, 129, 0.25)' : 'none',
             '&:hover': { bgcolor: activeTab === 'insights' ? 'primary.dark' : 'rgba(255,255,255,0.10)' }
           }}
         >
@@ -115,7 +115,7 @@ const AIAnalyticsAssistant = () => {
             fontSize: '0.78rem',
             color: activeTab === 'predictions' ? 'primary.contrastText' : 'text.secondary',
             bgcolor: activeTab === 'predictions' ? 'primary.main' : 'transparent',
-            boxShadow: activeTab === 'predictions' ? '0 4px 12px rgba(255, 96, 56, 0.2)' : 'none',
+            boxShadow: activeTab === 'predictions' ? '0 4px 12px rgba(16, 185, 129, 0.25)' : 'none',
             '&:hover': { bgcolor: activeTab === 'predictions' ? 'primary.dark' : 'rgba(255,255,255,0.10)' }
           }}
         >

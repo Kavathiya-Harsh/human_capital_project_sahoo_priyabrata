@@ -76,8 +76,8 @@ const PremiumChartsPanel = ({ serverData }) => {
               justifyContent: 'center',
               p: 1.2,
               borderRadius: '16px',
-              bgcolor: 'rgba(255, 96, 56, 0.1)',
-              color: '#FF6038',
+              bgcolor: 'rgba(16, 185, 129, 0.1)',
+              color: '#10B981',
             }}
           >
             <FiLayers size={20} />
@@ -107,7 +107,7 @@ const PremiumChartsPanel = ({ serverData }) => {
                 fontWeight: 800,
                 color: timeframe === tf ? 'primary.contrastText' : 'text.secondary',
                 bgcolor: timeframe === tf ? 'primary.main' : 'transparent',
-                boxShadow: timeframe === tf ? '0 4px 10px rgba(255, 96, 56, 0.15)' : 'none',
+                boxShadow: timeframe === tf ? '0 4px 10px rgba(16, 185, 129, 0.2)' : 'none',
                 '&:hover': { bgcolor: timeframe === tf ? 'primary.dark' : 'rgba(255,255,255,0.10)' }
               }}
             >
@@ -120,7 +120,7 @@ const PremiumChartsPanel = ({ serverData }) => {
       {/* Metric Selector Buttons */}
       <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
         {[
-          { key: 'CPI', label: 'Consumer Index', color: '#FF6038' },
+          { key: 'CPI', label: 'Consumer Index', color: '#10B981' },
           { key: 'HCI', label: 'Human Capital', color: '#00E5FF' },
           { key: 'Growth', label: 'Economic Growth', color: '#10B981' }
         ].map((btn) => (
@@ -153,8 +153,8 @@ const PremiumChartsPanel = ({ serverData }) => {
           <AreaChart data={trendData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <defs>
               <linearGradient id="cpiGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#FF6038" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#FF6038" stopOpacity={0.0} />
+                <stop offset="5%" stopColor="#10B981" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#10B981" stopOpacity={0.0} />
               </linearGradient>
               <linearGradient id="hciGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#00E5FF" stopOpacity={0.3} />
@@ -195,7 +195,7 @@ const PremiumChartsPanel = ({ serverData }) => {
               <Area
                 type="monotone"
                 dataKey="CPI"
-                stroke="#FF6038"
+                stroke="#10B981"
                 strokeWidth={2.5}
                 fillOpacity={1}
                 fill="url(#cpiGradient)"

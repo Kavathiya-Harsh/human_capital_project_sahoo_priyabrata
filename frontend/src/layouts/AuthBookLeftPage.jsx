@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { FiDatabase, FiTrendingUp, FiShield, FiGlobe } from 'react-icons/fi';
+import { FiHexagon, FiActivity, FiGlobe } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 
 const features = [
-  { icon: <FiTrendingUp size={14} />, label: 'Real-Time Analytics' },
-  { icon: <FiDatabase size={14} />, label: 'MongoDB Driven' },
-  { icon: <FiShield size={14} />, label: 'JWT Secured' },
-  { icon: <FiGlobe size={14} />, label: 'Global Intelligence' },
+  { icon: <FiActivity size={18} />, label: 'Real-Time Telemetry' },
+  { icon: <FiHexagon size={18} />, label: 'Quantum Aggregation' },
+  { icon: <FiGlobe size={18} />, label: 'Global Market Intel' },
 ];
 
 const AuthBookLeftPage = () => {
@@ -16,103 +16,103 @@ const AuthBookLeftPage = () => {
         flex: 1,
         display: { xs: 'none', md: 'flex' },
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        p: { md: 4, lg: 5 },
-        background: `linear-gradient(145deg, rgba(6,10,30,0.99) 0%, rgba(10,18,52,0.98) 100%)`,
+        justifyContent: 'center',
+        p: { md: 6, lg: 8 },
         position: 'relative',
         overflow: 'hidden',
+        borderRight: '1px solid rgba(16,185,129,0.1)',
+        background: 'radial-gradient(circle at center, rgba(16,185,129,0.05) 0%, rgba(5,5,5,1) 70%)',
       }}
     >
-      {/* Inner glow top-left */}
-      <Box sx={{
-        position: 'absolute', top: -100, left: -80,
-        width: 350, height: 350, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }} />
-      {/* Inner glow bottom-right */}
-      <Box sx={{
-        position: 'absolute', bottom: -60, right: -60,
-        width: 250, height: 250, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }} />
+      {/* ── Massive Emerald Glowing Orb ── */}
+      <motion.div
+        animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 600,
+          height: 600,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.5) 0%, transparent 60%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
 
-      {/* Top: Logo */}
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, position: 'relative' }}>
-        <Box sx={{
-          width: 42, height: 42, borderRadius: 2,
-          background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 0 20px rgba(59,130,246,0.5)',
-          flexShrink: 0,
-        }}>
-          <FiDatabase size={20} color="#fff" />
-        </Box>
-        <Typography variant="caption" fontWeight={700} sx={{
-          color: 'rgba(255,255,255,0.55)', letterSpacing: '0.14em', textTransform: 'uppercase',
-        }}>
-          Human Capital
-        </Typography>
-      </Box>
-
-      {/* Middle: Headline */}
-      <Box sx={{ my: 'auto', py: 2.5, position: 'relative' }}>
-        <Typography variant="h3" fontWeight={800}
-          sx={{ color: '#fff', lineHeight: 1.1, letterSpacing: '-0.03em', mb: 2.5 }}
+      <Box sx={{ zIndex: 1, maxWidth: 500 }}>
+        {/* Brand */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          Enterprise
-          <br />
-          <Box component="span" sx={{
-            background: 'linear-gradient(90deg, #3B82F6, #8B5CF6)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-          }}>
-            Analytics
-          </Box>
-          <br />
-          Platform
-        </Typography>
-
-        <Typography variant="body2" sx={{
-          color: 'rgba(255,255,255,0.45)', lineHeight: 1.9, mb: 4, maxWidth: 310,
-        }}>
-          Real-time MongoDB-powered dashboards, advanced aggregation pipelines,
-          and global human capital insights — all in one place.
-        </Typography>
-
-        {/* Feature pills */}
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.2 }}>
-          {features.map((f) => (
-            <Box key={f.label} sx={{
-              display: 'flex', alignItems: 'center', gap: 0.8,
-              px: 2, py: 0.9, borderRadius: 3,
-              background: 'rgba(59,130,246,0.08)',
-              border: '1px solid rgba(59,130,246,0.2)',
-              backdropFilter: 'blur(8px)',
-              transition: 'all 0.2s',
-              cursor: 'default',
-              '&:hover': {
-                background: 'rgba(59,130,246,0.18)',
-                borderColor: 'rgba(59,130,246,0.45)',
-              },
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 4 }}>
+            <Box sx={{
+              width: 48, height: 48, borderRadius: '12px',
+              background: '#050505',
+              border: '2px solid #10B981',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 0 20px rgba(16,185,129,0.4)',
             }}>
-              <Box sx={{ color: '#60A5FA' }}>{f.icon}</Box>
-              <Typography variant="caption" sx={{ color: '#93C5FD', fontWeight: 700, letterSpacing: '0.03em' }}>
-                {f.label}
-              </Typography>
+              <FiHexagon size={24} color="#10B981" />
             </Box>
+            <Typography variant="h6" fontWeight={800} sx={{ color: '#fff', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              HC System
+            </Typography>
+          </Box>
+        </motion.div>
+
+        {/* Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+        >
+          <Typography variant="h2" fontWeight={900} sx={{ color: '#fff', lineHeight: 1.1, mb: 3 }}>
+            Initialize
+            <br />
+            <Box component="span" sx={{
+              background: 'linear-gradient(90deg, #10B981, #00E5FF)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            }}>
+              Core Intelligence
+            </Box>
+          </Typography>
+          <Typography variant="body1" sx={{ color: '#94A3B8', lineHeight: 1.8, mb: 6 }}>
+            Access the high-frequency telemetry dashboard. Ensure your credentials are secure before initializing the global economic data stream.
+          </Typography>
+        </motion.div>
+
+        {/* Features */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+          {features.map((f, idx) => (
+            <motion.div
+              key={f.label}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + idx * 0.1 }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box sx={{
+                  width: 32, height: 32, borderRadius: '8px',
+                  background: 'rgba(16,185,129,0.1)',
+                  border: '1px solid rgba(16,185,129,0.3)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#10B981',
+                }}>
+                  {f.icon}
+                </Box>
+                <Typography variant="subtitle1" sx={{ color: '#F1F5F9', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  {f.label}
+                </Typography>
+              </Box>
+            </motion.div>
           ))}
         </Box>
-      </Box>
-
-      {/* Bottom: Stats */}
-      <Box sx={{ display: 'flex', gap: 4, pt: 3, borderTop: '1px solid rgba(255,255,255,0.06)', position: 'relative' }}>
-        {[['190k+', 'Data Points'], ['195', 'Countries'], ['99.9%', 'Uptime']].map(([val, label]) => (
-          <Box key={label}>
-            <Typography variant="h6" fontWeight={800} sx={{ color: '#3B82F6', lineHeight: 1 }}>{val}</Typography>
-            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.35)', letterSpacing: '0.04em' }}>{label}</Typography>
-          </Box>
-        ))}
       </Box>
     </Box>
   );

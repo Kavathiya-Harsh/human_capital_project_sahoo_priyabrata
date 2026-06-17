@@ -16,7 +16,7 @@ const SECURITY_CHECKS = [
 const STATUS_NODES = [
   { name: 'API Router', health: '99.9%', icon: FiServer, color: '#10B981' },
   { name: 'Mongo DB', health: '3 synced', icon: FiDatabase, color: '#10B981' },
-  { name: 'Cache Layer', health: 'Active', icon: FiGitCommit, color: '#00E5FF' },
+  { name: 'Cache Layer', health: 'Active', icon: FiGitCommit, color: '#10B981' },
   { name: 'Aggregator', health: 'Active', icon: FiCpu, color: '#A855F7' }
 ];
 

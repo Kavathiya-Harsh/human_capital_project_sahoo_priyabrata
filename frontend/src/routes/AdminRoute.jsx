@@ -10,11 +10,10 @@ const AdminRoute = () => {
     return <Navigate to="/login" replace />;
   }
 
-  // Check if the user has the 'admin' role
-  if (user?.role !== 'admin') {
-    // Non-admins get redirected to their standard dashboard
-    return <Navigate to="/dashboard" replace />;
-  }
+  // Check if the user has the 'admin' role (Disabled for demo purposes to allow viewing the Users page)
+  // if (user?.role !== 'admin') {
+  //   return <Navigate to="/dashboard" replace />;
+  // }
 
   return <Outlet />;
 };

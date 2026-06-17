@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppBar, Toolbar, Typography, IconButton, Box, Button, Avatar, Chip } from '@mui/material';
-import { FiMenu, FiMoon, FiSun, FiLogOut, FiActivity, FiZap, FiBell } from 'react-icons/fi';
+import { AppBar, Toolbar, Typography, IconButton, Box, Button, Chip } from '@mui/material';
+import { FiMenu, FiMoon, FiSun, FiLogOut, FiHexagon, FiBell } from 'react-icons/fi';
 import { toggleSidebar, toggleTheme } from '../../features/uiSlice';
 import { logout } from '../../features/authSlice';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,6 @@ const Topbar = () => {
     navigate('/login');
   };
 
-
   return (
     <AppBar
       position="fixed"
@@ -27,9 +26,12 @@ const Topbar = () => {
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
         color: 'text.primary',
+        backgroundColor: isDark ? 'rgba(5,5,5,0.8)' : 'rgba(245,245,245,0.8)',
+        backdropFilter: 'blur(24px) saturate(180%)',
+        borderBottom: isDark ? '1px solid rgba(16,185,129,0.1)' : '1px solid rgba(16,185,129,0.15)',
       }}
     >
-      <Toolbar sx={{ minHeight: '68px !important', px: { xs: 2, sm: 3 }, gap: 1.5 }}>
+      <Toolbar sx={{ minHeight: '64px !important', px: { xs: 2, sm: 3 }, gap: 1.5 }}>
 
         {/* Hamburger — mobile */}
         <IconButton
@@ -52,21 +54,18 @@ const Topbar = () => {
             >
               <Box
                 sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: '14px',
-                  background: isDark
-                    ? 'linear-gradient(135deg, #3b82f6, #8b5cf6)'
-                    : 'linear-gradient(45deg, #FF6038, #FF8C42)',
+                  width: 38,
+                  height: 38,
+                  borderRadius: '10px',
+                  background: '#050505',
+                  border: '2px solid #10B981',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: isDark
-                    ? '0 4px 16px rgba(59,130,246,0.45), inset 0 1px 0 rgba(255,255,255,0.15)'
-                    : '4px 4px 10px #b8c1cf, -4px -4px 10px #ffffff',
+                  boxShadow: '0 0 15px rgba(16,185,129,0.3)',
                 }}
               >
-                <FiZap size={18} color="#fff" />
+                <FiHexagon size={20} color="#10B981" />
               </Box>
             </motion.div>
 
@@ -76,37 +75,32 @@ const Topbar = () => {
                 noWrap
                 sx={{
                   fontWeight: 900,
-                  letterSpacing: '-0.03em',
+                  letterSpacing: '-0.02em',
                   lineHeight: 1,
-                  background: isDark
-                    ? 'linear-gradient(135deg, #f0f4ff 0%, #a78bfa 50%, #60a5fa 100%)'
-                    : 'linear-gradient(45deg, #FF6038, #00E5FF)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  color: isDark ? '#fff' : '#0f172a',
                 }}
               >
-                Human Capital Analytics
+                HC System
               </Typography>
               <Typography
                 sx={{
-                  fontSize: '0.6rem',
+                  fontSize: '0.65rem',
                   fontWeight: 700,
                   letterSpacing: '0.12em',
-                  color: isDark ? '#3b82f6' : '#FF6038',
+                  color: '#10B981',
                   textTransform: 'uppercase',
                   lineHeight: 1,
                   mt: 0.2,
                 }}
               >
-                Enterprise Intelligence Platform
+                Core Intelligence
               </Typography>
             </Box>
           </Box>
 
           {/* Live status chip */}
           <Chip
-            label="● LIVE"
+            label="● SECURE"
             size="small"
             sx={{
               display: { xs: 'none', lg: 'flex' },
@@ -114,9 +108,9 @@ const Topbar = () => {
               fontSize: '0.6rem',
               fontWeight: 900,
               letterSpacing: '0.1em',
-              bgcolor: isDark ? 'rgba(16,185,129,0.12)' : 'rgba(16,185,129,0.1)',
-              color: '#10b981',
-              border: '1px solid rgba(16,185,129,0.3)',
+              bgcolor: 'rgba(16,185,129,0.1)',
+              color: '#10B981',
+              border: '1px solid rgba(16,185,129,0.2)',
               '& .MuiChip-label': { px: 1 },
             }}
           />
@@ -135,7 +129,7 @@ const Topbar = () => {
               letterSpacing: '0.02em',
             }}
           >
-            {user?.name || 'Enterprise Admin'}
+            {user?.name || 'Admin'}
           </Typography>
 
           {/* Notification bell */}
@@ -143,14 +137,11 @@ const Topbar = () => {
             size="small"
             sx={{
               display: { xs: 'none', sm: 'flex' },
-              width: 38,
-              height: 38,
-              borderRadius: '14px',
-              bgcolor: isDark ? 'rgba(255,255,255,0.04)' : 'background.default',
-              border: isDark ? '1px solid rgba(255,255,255,0.07)' : 'none',
-              boxShadow: isDark
-                ? '3px 3px 8px rgba(0,0,0,0.5), -2px -2px 5px rgba(255,255,255,0.04)'
-                : '4px 4px 8px #b8c1cf, -4px -4px 8px #ffffff',
+              width: 36,
+              height: 36,
+              borderRadius: '8px',
+              bgcolor: isDark ? 'rgba(16,185,129,0.05)' : 'rgba(16,185,129,0.05)',
+              border: isDark ? '1px solid rgba(16,185,129,0.1)' : '1px solid rgba(16,185,129,0.15)',
               color: 'text.secondary',
             }}
           >
@@ -165,25 +156,20 @@ const Topbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: 38,
-                height: 38,
-                borderRadius: '14px',
+                width: 36,
+                height: 36,
+                borderRadius: '8px',
                 cursor: 'pointer',
-                bgcolor: isDark ? 'rgba(255,255,255,0.04)' : 'background.default',
-                border: isDark ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                boxShadow: isDark
-                  ? '3px 3px 8px rgba(0,0,0,0.5), -2px -2px 5px rgba(255,255,255,0.04)'
-                  : '4px 4px 8px #b8c1cf, -4px -4px 8px #ffffff',
-                color: isDark ? '#f59e0b' : 'text.secondary',
+                bgcolor: isDark ? 'rgba(16,185,129,0.05)' : 'rgba(16,185,129,0.05)',
+                border: isDark ? '1px solid rgba(16,185,129,0.1)' : '1px solid rgba(16,185,129,0.15)',
+                color: isDark ? '#10B981' : 'text.secondary',
                 transition: 'all 0.3s ease',
                 '&:hover': {
-                  boxShadow: isDark
-                    ? '0 0 16px rgba(245,158,11,0.4), 3px 3px 8px rgba(0,0,0,0.5)'
-                    : 'inset 4px 4px 8px #b8c1cf, inset -4px -4px 8px #ffffff',
+                  bgcolor: 'rgba(16,185,129,0.15)',
                 },
               }}
             >
-              {isDark ? <FiSun size={17} /> : <FiMoon size={17} />}
+              {isDark ? <FiSun size={16} /> : <FiMoon size={16} />}
             </Box>
           </motion.div>
 
@@ -197,9 +183,9 @@ const Topbar = () => {
               startIcon={<FiLogOut size={14} />}
               sx={{
                 display: { xs: 'none', sm: 'flex' },
-                borderRadius: '14px',
+                borderRadius: '8px',
                 px: 2.5,
-                py: 1,
+                py: 0.8,
                 fontSize: '0.78rem',
                 fontWeight: 800,
               }}

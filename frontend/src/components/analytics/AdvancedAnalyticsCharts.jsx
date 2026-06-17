@@ -120,10 +120,10 @@ const AdvancedAnalyticsCharts = () => {
     success:   '#10B981',
     info:      '#06B6D4',
     purple:    '#8B5CF6',
-    pink:      '#EC4899',
+    pink:      '#00E5FF',
     amber:     '#F59E0B',
     red:       '#EF4444',
-    indigo:    '#6366F1',
+    indigo:    '#10B981',
   };
 
   const gridStroke = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)';

@@ -16,8 +16,7 @@ import DangerZoneSettings from './components/DangerZoneSettings';
 const Settings = () => {
   const { themeMode, appearance } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
-  const isNeu = appearance?.neumorphism !== false;
-  const sectionCard = getSectionCardSx(isDark, isNeu, appearance.glassIntensity);
+  const sectionCard = getSectionCardSx(isDark);
 
   const [helpOpen, setHelpOpen] = useState(false);
 
@@ -50,10 +49,10 @@ const Settings = () => {
           onClick={() => setHelpOpen(!helpOpen)}
           sx={{
             borderRadius: '24px', px: 3, fontWeight: 800,
-            border: isNeu ? 'none' : '1px solid',
-            boxShadow: isNeu ? (isDark ? '4px 4px 8px #0c0f16, -4px -4px 8px #1e2536' : '4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff') : 'none',
+            border: '1px solid',
+            boxShadow: 'none',
             '&:hover': {
-              boxShadow: isNeu ? (isDark ? 'inset 2px 2px 5px #0c0f16, inset -2px -2px 5px #1e2536' : 'inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff') : 'none',
+              boxShadow: 'none',
             }
           }}
         >
@@ -99,9 +98,9 @@ const Settings = () => {
               </Typography>
               <Box sx={{
                 width: 54, height: 54, borderRadius: '16px',
-                background: isNeu ? 'transparent' : `${kpi.color}18`, color: kpi.color,
+                background: `${kpi.color}18`, color: kpi.color,
                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22,
-                boxShadow: isNeu ? (isDark ? 'inset 4px 4px 8px #080c16, inset -4px -4px 8px #1e2536' : 'inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff') : `0 0 18px ${kpi.color}28`,
+                boxShadow: 'none',
               }}>
                 {kpi.icon}
               </Box>
@@ -114,8 +113,8 @@ const Settings = () => {
             </Box>
             <Chip label={kpi.delta} size="small" sx={{
               alignSelf: 'flex-start', height: 26, fontSize: '0.78rem', fontWeight: 800,
-              bgcolor: isNeu ? 'transparent' : `${kpi.color}18`, color: kpi.color, border: isNeu ? 'none' : `1px solid ${kpi.color}33`,
-              boxShadow: isNeu ? (isDark ? 'inset 2px 2px 5px #0c0f16, inset -2px -2px 5px #1e2536' : 'inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff') : 'none',
+              bgcolor: `${kpi.color}18`, color: kpi.color, border: `1px solid ${kpi.color}33`,
+              boxShadow: 'none',
               px: 1,
             }} />
           </Paper>

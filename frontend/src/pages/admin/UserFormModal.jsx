@@ -19,7 +19,7 @@ const step2Schema = Yup.object({
   password: Yup.string().min(6, 'Password must be at least 6 characters'),
 });
 
-const UserFormModal = ({ open, onClose, editingUser, refreshUsers, selectShadow }) => {
+const UserFormModal = ({ open, onClose, editingUser, refreshUsers }) => {
   const [activeStep, setActiveStep] = useState(0);
   const steps = ['Personal Details', 'Security & Role'];
 

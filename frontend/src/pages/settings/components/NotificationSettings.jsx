@@ -9,8 +9,7 @@ const NotificationSettings = () => {
   const dispatch = useDispatch();
   const { themeMode, appearance, notifs } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
-  const isNeu = appearance?.neumorphism !== false;
-  const sectionCard = getSectionCardSx(isDark, isNeu, appearance.glassIntensity);
+  const sectionCard = getSectionCardSx(isDark);
 
   return (
     <Paper elevation={0} sx={{ ...sectionCard, height: '100%', p: 5 }}>

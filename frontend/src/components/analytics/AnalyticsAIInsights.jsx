@@ -6,9 +6,8 @@ import { useSelector } from 'react-redux';
 
 const AnalyticsAIInsights = () => {
 
-  const { themeMode, appearance } = useSelector((state) => state.ui);
+  const { themeMode } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
-  const isNeu = appearance?.neumorphism !== false;
 
   return (
     <Paper
@@ -33,10 +32,10 @@ const AnalyticsAIInsights = () => {
               justifyContent: 'center',
               p: 1.2,
               borderRadius: '16px',
-              background: isNeu ? 'transparent' : 'linear-gradient(135deg, #0EA5E9 0%, #A855F7 100%)',
-              color: isNeu ? '#0EA5E9' : 'white',
-              border: isNeu ? 'none' : '1px solid rgba(255,255,255,0.1)',
-              boxShadow: isNeu ? (isDark ? 'inset 3px 3px 6px #0c0f16, inset -3px -3px 6px #1e2536' : 'inset 3px 3px 6px #d1d9e6, inset -3px -3px 6px #ffffff') : '0 8px 16px rgba(14, 165, 233, 0.25)',
+              background: 'linear-gradient(135deg, #10B981 0%, #00E5FF 100%)',
+              color: 'white',
+              border: '1px solid rgba(255,255,255,0.1)',
+              boxShadow: '0 8px 16px rgba(16, 185, 129, 0.25)',
             }}
           >
             <FiZap size={20} className="animate-pulse" />
@@ -72,10 +71,10 @@ const AnalyticsAIInsights = () => {
           sx={{
             p: 2.5,
             borderRadius: '20px',
-            bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(59, 130, 246, 0.04)' : 'rgba(59, 130, 246, 0.02)'),
-            border: isNeu ? 'none' : '1.5px solid',
-            borderColor: isNeu ? 'transparent' : 'rgba(59, 130, 246, 0.12)',
-            boxShadow: isNeu ? (isDark ? 'inset 4px 4px 8px #0c0f16, inset -4px -4px 8px #1e2536' : 'inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff') : 'none',
+            bgcolor: isDark ? 'rgba(16, 185, 129, 0.04)' : 'rgba(16, 185, 129, 0.02)',
+            border: '1.5px solid',
+            borderColor: 'rgba(16, 185, 129, 0.12)',
+            boxShadow: 'none',
             display: 'flex',
             gap: 2
           }}
@@ -97,10 +96,10 @@ const AnalyticsAIInsights = () => {
           sx={{
             p: 2.5,
             borderRadius: '20px',
-            bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(168, 85, 247, 0.04)' : 'rgba(168, 85, 247, 0.02)'),
-            border: isNeu ? 'none' : '1.5px solid',
-            borderColor: isNeu ? 'transparent' : 'rgba(168, 85, 247, 0.12)',
-            boxShadow: isNeu ? (isDark ? 'inset 4px 4px 8px #0c0f16, inset -4px -4px 8px #1e2536' : 'inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff') : 'none',
+            bgcolor: isDark ? 'rgba(0, 229, 255, 0.04)' : 'rgba(0, 229, 255, 0.02)',
+            border: '1.5px solid',
+            borderColor: 'rgba(0, 229, 255, 0.12)',
+            boxShadow: 'none',
             display: 'flex',
             gap: 2
           }}

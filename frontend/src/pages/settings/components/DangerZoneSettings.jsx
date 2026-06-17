@@ -8,8 +8,7 @@ import { SectionHeader, getSectionCardSx } from './Shared';
 const DangerZoneSettings = () => {
   const { themeMode, appearance } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
-  const isNeu = appearance?.neumorphism !== false;
-  const sectionCard = getSectionCardSx(isDark, isNeu, appearance.glassIntensity);
+  const sectionCard = getSectionCardSx(isDark);
 
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [actionStates, setActionStates] = useState({});
@@ -34,12 +33,10 @@ const DangerZoneSettings = () => {
       transition={{ delay: 0.3 }}
       sx={{
         ...sectionCard, mt: 4,
-        border: isNeu ? 'none' : '1px solid rgba(244, 67, 54, 0.2)',
-        background: isNeu 
-          ? (isDark ? '#151A26' : '#E6ECF5')
-          : (isDark
-            ? 'linear-gradient(135deg, rgba(244,67,54,0.04), rgba(244,67,54,0.02))'
-            : 'linear-gradient(135deg, rgba(244,67,54,0.03), rgba(244,67,54,0.01))'),
+        border: '1px solid rgba(244, 67, 54, 0.2)',
+        background: isDark 
+          ? 'linear-gradient(135deg, rgba(244,67,54,0.04), rgba(244,67,54,0.02))'
+          : 'linear-gradient(135deg, rgba(244,67,54,0.03), rgba(244,67,54,0.01))',
       }}
     >
       <SectionHeader
@@ -79,9 +76,9 @@ const DangerZoneSettings = () => {
               transition={{ type: 'spring', stiffness: 350, damping: 25 }}
               sx={{
                 p: 2.5, borderRadius: '20px',
-                background: isNeu ? 'transparent' : (isDark ? `${item.color}08` : `${item.color}06`),
-                border: isNeu ? 'none' : `1px solid ${item.color}22`,
-                boxShadow: isNeu ? (isDark ? 'inset 4px 4px 8px #080c16, inset -4px -4px 8px #1e2536' : 'inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff') : 'none',
+                background: isDark ? `${item.color}08` : `${item.color}06`,
+                border: `1px solid ${item.color}22`,
+                boxShadow: 'none',
                 height: '100%', display: 'flex', flexDirection: 'column', gap: 1.5,
               }}
             >

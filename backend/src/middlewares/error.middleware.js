@@ -15,8 +15,10 @@ const globalErrorHandler = (err, req, res, _next) => {
 
   // Handle MongoDB Duplicate Key Error (e.g. email already exists)
   if (err.code === 11000) {
-    const keys = err.keyValue ? Object.keys(err.keyValue).join(", ") : "unknown field";
-    const message = `Duplicate field value entered: ${keys}`;
+    const keys = err.keyValue ? Object.keys(err.keyValue).join(", ") : "";
+    const message = err.keyValue
+      ? `Duplicate field value entered: ${keys}`
+      : err.message;
     error = new Error(message);
     error.statusCode = 400;
   }

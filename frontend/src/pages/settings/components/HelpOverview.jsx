@@ -8,8 +8,7 @@ import { SectionHeader, getSectionCardSx } from './Shared';
 const HelpOverview = () => {
   const { themeMode, appearance } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
-  const isNeu = appearance?.neumorphism !== false;
-  const sectionCard = getSectionCardSx(isDark, isNeu, appearance.glassIntensity);
+  const sectionCard = getSectionCardSx(isDark);
 
   return (
     <Paper
@@ -20,7 +19,7 @@ const HelpOverview = () => {
       transition={{ duration: 0.3 }}
       sx={{
         ...sectionCard, mt: 4, mb: 4,
-        background: isNeu ? (isDark ? '#151A26' : '#E6ECF5') : (isDark ? 'rgba(21, 26, 38, 0.6)' : 'rgba(255, 255, 255, 0.6)'),
+        background: isDark ? 'rgba(21, 26, 38, 0.6)' : 'rgba(255, 255, 255, 0.6)',
       }}
     >
       <SectionHeader
@@ -33,9 +32,9 @@ const HelpOverview = () => {
         <Grid item xs={12} md={4}>
           <Box sx={{
             p: 3, borderRadius: '20px', height: '100%',
-            bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)'),
-            boxShadow: isNeu ? (isDark ? 'inset 4px 4px 8px #080c16, inset -4px -4px 8px #1e2536' : 'inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff') : 'none',
-            border: isNeu ? 'none' : '1px solid divider',
+            bgcolor: (isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)'),
+            boxShadow: 'none',
+            border: '1px solid divider',
           }}>
             <Typography variant="h6" fontWeight="800" color="primary.main" gutterBottom>What is this platform?</Typography>
             <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontWeight: 500 }}>
@@ -46,9 +45,9 @@ const HelpOverview = () => {
         <Grid item xs={12} md={4}>
           <Box sx={{
             p: 3, borderRadius: '20px', height: '100%',
-            bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)'),
-            boxShadow: isNeu ? (isDark ? 'inset 4px 4px 8px #080c16, inset -4px -4px 8px #1e2536' : 'inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff') : 'none',
-            border: isNeu ? 'none' : '1px solid divider',
+            bgcolor: (isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)'),
+            boxShadow: 'none',
+            border: '1px solid divider',
           }}>
             <Typography variant="h6" fontWeight="800" color="secondary.main" gutterBottom>How does it work?</Typography>
             <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontWeight: 500 }}>
@@ -59,9 +58,9 @@ const HelpOverview = () => {
         <Grid item xs={12} md={4}>
           <Box sx={{
             p: 3, borderRadius: '20px', height: '100%',
-            bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)'),
-            boxShadow: isNeu ? (isDark ? 'inset 4px 4px 8px #080c16, inset -4px -4px 8px #1e2536' : 'inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff') : 'none',
-            border: isNeu ? 'none' : '1px solid divider',
+            bgcolor: (isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.02)'),
+            boxShadow: 'none',
+            border: '1px solid divider',
           }}>
             <Typography variant="h6" fontWeight="800" sx={{ color: '#ff6038' }} gutterBottom>How does it help you?</Typography>
             <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontWeight: 500 }}>
@@ -71,7 +70,7 @@ const HelpOverview = () => {
         </Grid>
       </Grid>
       
-      <Divider sx={{ my: 4, opacity: isNeu ? 0.05 : 0.15 }} />
+      <Divider sx={{ my: 4, opacity: 0.15 }} />
       <Typography variant="h6" fontWeight="900" sx={{ mb: 3, letterSpacing: '-0.02em', color: 'text.primary' }}>
         Platform Navigation Guide
       </Typography>
@@ -86,9 +85,9 @@ const HelpOverview = () => {
           <Grid item xs={12} sm={6} md={4} key={`nav-${idx}`}>
             <Box sx={{
               p: 2, borderRadius: '16px', height: '100%',
-              bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(255,255,255,0.015)' : 'rgba(0,0,0,0.015)'),
-              border: isNeu ? 'none' : '1px solid', borderColor: isNeu ? 'transparent' : 'divider',
-              boxShadow: isNeu ? (isDark ? 'inset 3px 3px 6px #0c0f16, inset -3px -3px 6px #1e2536' : 'inset 3px 3px 6px #d1d9e6, inset -3px -3px 6px #ffffff') : 'none',
+              bgcolor: (isDark ? 'rgba(255,255,255,0.015)' : 'rgba(0,0,0,0.015)'),
+              border: '1px solid', borderColor: 'divider',
+              boxShadow: 'none',
               display: 'flex', gap: 1.5
             }}>
               <Box sx={{ color: 'secondary.main', mt: 0.5 }}>{sec.icon}</Box>
@@ -101,7 +100,7 @@ const HelpOverview = () => {
         ))}
       </Grid>
       
-      <Divider sx={{ my: 4, opacity: isNeu ? 0.05 : 0.15 }} />
+      <Divider sx={{ my: 4, opacity: 0.15 }} />
       <Typography variant="h6" fontWeight="900" sx={{ mb: 3, letterSpacing: '-0.02em', color: 'text.primary' }}>
         Settings Sections Overview
       </Typography>
@@ -116,9 +115,9 @@ const HelpOverview = () => {
           <Grid item xs={12} sm={6} md={4} key={idx}>
             <Box sx={{
               p: 2, borderRadius: '16px', height: '100%',
-              bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(255,255,255,0.015)' : 'rgba(0,0,0,0.015)'),
-              border: isNeu ? 'none' : '1px solid', borderColor: isNeu ? 'transparent' : 'divider',
-              boxShadow: isNeu ? (isDark ? 'inset 3px 3px 6px #0c0f16, inset -3px -3px 6px #1e2536' : 'inset 3px 3px 6px #d1d9e6, inset -3px -3px 6px #ffffff') : 'none',
+              bgcolor: (isDark ? 'rgba(255,255,255,0.015)' : 'rgba(0,0,0,0.015)'),
+              border: '1px solid', borderColor: 'divider',
+              boxShadow: 'none',
               display: 'flex', gap: 1.5
             }}>
               <Box sx={{ color: 'primary.main', mt: 0.5 }}>{sec.icon}</Box>

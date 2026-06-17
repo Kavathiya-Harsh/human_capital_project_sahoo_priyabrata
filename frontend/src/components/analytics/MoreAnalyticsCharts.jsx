@@ -106,7 +106,7 @@ const MoreAnalyticsCharts = () => {
     fetchMoreCharts();
   }, []);
 
-  const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#A855F7', '#EC4899'];
+  const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#A855F7', '#00E5FF'];
   const gridStroke = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)';
   const tickStyle  = { fill: theme.palette.text.secondary, fontSize: 9, fontWeight: 700 };
 

@@ -8,9 +8,8 @@ import { SectionHeader, SessionCard, getSectionCardSx, getTextFieldSx } from './
 const ProfileSettings = () => {
   const { themeMode, appearance } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
-  const isNeu = appearance?.neumorphism !== false;
-  const sectionCard = getSectionCardSx(isDark, isNeu, appearance.glassIntensity);
-  const textFieldSx = getTextFieldSx(isDark, isNeu);
+  const sectionCard = getSectionCardSx(isDark);
+  const textFieldSx = getTextFieldSx();
 
   const [profileSaved, setProfileSaved] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -265,9 +264,9 @@ const ProfileSettings = () => {
         <Typography variant="subtitle2" fontWeight="800" sx={{ mb: 1.5, color: 'text.secondary', letterSpacing: '0.05em' }}>
           ACTIVE SESSIONS
         </Typography>
-        <SessionCard device="Chrome · macOS" location="Mumbai, IN" time="Now" current isDark={isDark} isNeu={isNeu} />
-        <SessionCard device="Safari · iPhone 15" location="Delhi, IN" time="2h ago" isDark={isDark} isNeu={isNeu} />
-        <SessionCard device="Firefox · Windows 11" location="Bangalore, IN" time="Yesterday" isDark={isDark} isNeu={isNeu} />
+        <SessionCard device="Chrome · macOS" location="Mumbai, IN" time="Now" current isDark={isDark} />
+        <SessionCard device="Safari · iPhone 15" location="Delhi, IN" time="2h ago" isDark={isDark} />
+        <SessionCard device="Firefox · Windows 11" location="Bangalore, IN" time="Yesterday" isDark={isDark} />
 
         <Button
           variant="contained"

@@ -76,8 +76,8 @@ const QuickActionsDashboard = () => {
                 fontWeight: 700,
                 fontSize: '0.74rem',
                 py: 1,
-                background: 'linear-gradient(135deg, #FF6038 0%, #FF8A6C 100%)',
-                boxShadow: '0 4px 12px rgba(255,96,56,0.2)',
+                background: 'linear-gradient(135deg, #10B981 0%, #00E5FF 100%)',
+                boxShadow: '0 4px 16px rgba(16,185,129,0.25)',
               }}
             >
               Add Record

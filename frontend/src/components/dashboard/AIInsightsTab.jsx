@@ -9,7 +9,7 @@ const INSIGHTS = [
   {
     text: "Consumer Price Index (CPI) in Canada peaked at 142.77 in late 2026, representing a strong consumer spending baseline.",
     category: "Market Trend",
-    color: "#FF6038"
+    color: "#10B981"
   },
   {
     text: "US Human Capital Index shows a steady floor at 0.72. Opportunity detected to aggregate skills indices.",

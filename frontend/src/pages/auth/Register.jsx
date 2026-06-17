@@ -1,28 +1,37 @@
 import React, { useState } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../../features/authSlice';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
-import { Box, Paper, Link, Typography } from '@mui/material';
+import { Box, Paper, Link, Typography, Alert } from '@mui/material';
 import SEOMeta from '../../components/common/SEOMeta';
 import { motion } from 'framer-motion';
 import RegisterForm from '../../components/forms/RegisterForm';
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleRegisterSubmit = async (values) => {
     setLoading(true);
+    setError(null);
     try {
-      await api.post('/auth/register', {
+      const response = await api.post('/auth/register', {
         name: values.name,
         email: values.email,
         password: values.password,
       });
-      toast.success('Registration successful! Please log in.');
-      navigate('/login');
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Registration failed');
+      const { token, user } = response.data.data;
+      dispatch(setCredentials({ token, user }));
+      toast.success('Registration successful! Welcome.');
+      navigate('/dashboard');
+    } catch (err) {
+      const errMsg = err.response?.data?.message || 'Registration failed';
+      setError(errMsg);
+      toast.error(errMsg);
     } finally {
       setLoading(false);
     }
@@ -56,6 +65,12 @@ const Register = () => {
             Join the platform to access enterprise analytics
           </Typography>
         </Box>
+
+        {error && (
+          <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>
+            {error}
+          </Alert>
+        )}
 
         <RegisterForm onSubmit={handleRegisterSubmit} loading={loading} />
 

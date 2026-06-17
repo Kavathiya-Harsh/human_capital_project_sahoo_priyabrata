@@ -3,7 +3,7 @@ import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recha
 import { Paper, Typography, Box, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 
-const COLORS = ['#FF6038', '#00E5FF', '#A855F7', '#10B981', '#FF6B35'];
+const COLORS = ['#10B981', '#00E5FF', '#8B5CF6', '#06B6D4', '#10B981'];
 
 const DonutChartWrapper = ({ title, data, dataKeyName, dataKeyValue }) => {
   const theme = useTheme();

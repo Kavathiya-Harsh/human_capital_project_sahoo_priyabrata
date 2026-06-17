@@ -65,15 +65,8 @@ const PanelCard = ({ icon: Icon, iconClass, title, children, delay = 0 }) => {
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
 const GlobalAnalyticsPanel = () => {
-  const { themeMode, appearance } = useSelector((s) => s.ui);
+  const { themeMode } = useSelector((s) => s.ui);
   const isDark = themeMode === 'dark';
-  const isNeu  = appearance?.neumorphism !== false;
-
-  const neuShadow = isNeu
-    ? isDark
-      ? 'inset 2px 2px 4px #0c0f16, inset -2px -2px 4px #1e2536'
-      : 'inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #ffffff'
-    : 'none';
 
   const rowStyle = {
     display: 'grid',
@@ -95,9 +88,8 @@ const GlobalAnalyticsPanel = () => {
               sx={{
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 p: 1, borderRadius: '12px', gap: 1.5,
-                bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.005)'),
-                border: isNeu ? 'none' : '1px solid', borderColor: isNeu ? 'transparent' : 'divider',
-                boxShadow: neuShadow,
+                bgcolor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+                border: '1px solid', borderColor: 'divider',
               }}
             >
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0 }}>
@@ -121,9 +113,8 @@ const GlobalAnalyticsPanel = () => {
               key={i}
               sx={{
                 p: 1, borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(255,255,255,0.005)' : 'rgba(0,0,0,0.002)'),
-                border: isNeu ? 'none' : '1px solid', borderColor: isNeu ? 'transparent' : 'divider',
-                boxShadow: neuShadow,
+                bgcolor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+                border: '1px solid', borderColor: 'divider',
               }}
             >
               <Box sx={{ minWidth: 0 }}>
@@ -144,8 +135,7 @@ const GlobalAnalyticsPanel = () => {
               key={i}
               sx={{
                 p: 1, borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 1.5,
-                border: isNeu ? 'none' : '1px dashed', borderColor: isNeu ? 'transparent' : 'divider',
-                boxShadow: neuShadow,
+                border: '1px dashed', borderColor: 'divider',
               }}
             >
               <Typography variant="caption" color="text.primary" fontWeight={700} sx={{ fontSize: '0.62rem', fontFamily: 'monospace' }} noWrap>
@@ -167,9 +157,8 @@ const GlobalAnalyticsPanel = () => {
               key={i}
               sx={{
                 p: 1, borderRadius: '12px',
-                bgcolor: isNeu ? 'transparent' : (isDark ? 'rgba(255,255,255,0.005)' : 'rgba(0,0,0,0.002)'),
-                border: isNeu ? 'none' : '1px solid', borderColor: isNeu ? 'transparent' : 'divider',
-                boxShadow: neuShadow,
+                bgcolor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+                border: '1px solid', borderColor: 'divider',
               }}
             >
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: m.progress ? 0.5 : 0 }}>

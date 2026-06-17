@@ -5,19 +5,19 @@ import {
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { FiHome, FiBarChart2, FiGlobe, FiSettings, FiUsers, FiDatabase, FiZap } from 'react-icons/fi';
+import { FiHome, FiBarChart2, FiGlobe, FiSettings, FiUsers, FiDatabase, FiHexagon } from 'react-icons/fi';
 import { setSidebarOpen } from '../../features/uiSlice';
 import { motion } from 'framer-motion';
 
 const drawerWidth = 264;
 
 const menuItems = [
-  { text: 'Dashboard',  icon: <FiHome size={18} />,     path: '/dashboard', color: '#3b82f6' },
-  { text: 'Analytics',  icon: <FiBarChart2 size={18} />, path: '/analytics', color: '#8b5cf6' },
-  { text: 'Data Grid',  icon: <FiDatabase size={18} />,  path: '/data',      color: '#06b6d4' },
-  { text: 'Users',      icon: <FiUsers size={18} />,     path: '/users',     color: '#10b981' },
-  { text: 'Countries',  icon: <FiGlobe size={18} />,     path: '/countries', color: '#f59e0b' },
-  { text: 'Settings',   icon: <FiSettings size={18} />,  path: '/settings',  color: '#ec4899' },
+  { text: 'Dashboard',  icon: <FiHome size={20} />,     path: '/dashboard' },
+  { text: 'Analytics',  icon: <FiBarChart2 size={20} />, path: '/analytics' },
+  { text: 'Data Grid',  icon: <FiDatabase size={20} />,  path: '/data' },
+  { text: 'Users',      icon: <FiUsers size={20} />,     path: '/users' },
+  { text: 'Countries',  icon: <FiGlobe size={20} />,     path: '/countries' },
+  { text: 'Settings',   icon: <FiSettings size={20} />,  path: '/settings' },
 ];
 
 const Sidebar = () => {
@@ -29,95 +29,77 @@ const Sidebar = () => {
     dispatch(setSidebarOpen(!sidebarOpen));
   };
 
-  /* ── shadow tokens (mode-aware) ── */
-  const outerShadow = isDark
-    ? '4px 4px 10px rgba(0,0,0,0.6), -2px -2px 6px rgba(255,255,255,0.04)'
-    : '4px 4px 8px #b8c1cf, -4px -4px 8px #ffffff';
-
-  const activeShadow = isDark
-    ? 'inset 3px 3px 7px rgba(0,0,0,0.55), inset -2px -2px 5px rgba(255,255,255,0.04)'
-    : 'inset 4px 4px 8px #b8c1cf, inset -4px -4px 8px #ffffff';
-
   const drawer = (
-    <Box sx={{ px: 2, py: 1, height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ px: 2, py: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Toolbar sx={{ mb: 1 }} />
 
       {/* ── Nav section label ── */}
       <Typography
         sx={{
-          fontSize: '0.58rem',
+          fontSize: '0.65rem',
           fontWeight: 800,
-          letterSpacing: '0.15em',
+          letterSpacing: '0.12em',
           textTransform: 'uppercase',
           color: 'text.secondary',
           px: 1.5,
-          mb: 2,
-          mt: 0.5,
+          mb: 2.5,
+          mt: 1,
         }}
       >
-        Navigation
+        Main Navigation
       </Typography>
 
       <List sx={{ flex: 1 }}>
-        {menuItems.map((item) => (
-          <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
+        {menuItems.map((item, index) => (
+          <ListItem key={item.text} disablePadding sx={{ mb: 1.2 }}>
             <motion.div
               style={{ width: '100%' }}
-              whileHover={{ x: 2 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.05 }}
             >
               <ListItemButton
                 component={NavLink}
                 to={item.path}
                 onClick={() => { if (window.innerWidth < 600) handleDrawerToggle(); }}
                 sx={{
-                  borderRadius: '18px',
+                  borderRadius: '12px',
                   py: 1.4,
-                  px: 2,
-                  transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  px: 2.5,
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   position: 'relative',
                   overflow: 'hidden',
 
-                  /* default — raised neumorphic */
+                  /* default — clean flat */
                   bgcolor: 'transparent',
-                  boxShadow: outerShadow,
-                  border: isDark
-                    ? '1px solid rgba(255,255,255,0.05)'
-                    : '1px solid rgba(0,0,0,0.04)',
+                  border: '1px solid transparent',
+                  color: isDark ? '#94A3B8' : '#64748B',
 
                   '&.active': {
-                    bgcolor: 'transparent',
-                    boxShadow: activeShadow,
-                    border: isDark ? `1px solid ${item.color}22` : 'none',
-                    '& .MuiListItemIcon-root': { color: item.color },
-                    '& .MuiListItemText-primary': { color: item.color },
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      left: 0,
-                      top: '15%',
-                      bottom: '15%',
-                      width: 3,
-                      borderRadius: '0 3px 3px 0',
-                      background: item.color,
-                      boxShadow: isDark ? `0 0 10px ${item.color}` : 'none',
-                    },
+                    background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                    boxShadow: isDark 
+                      ? '0 6px 20px rgba(16, 185, 129, 0.3)' 
+                      : '0 6px 20px rgba(16, 185, 129, 0.4)',
+                    color: '#ffffff',
+                    border: 'none',
+                    transform: 'translateY(-2px)',
+                    '& .MuiListItemIcon-root': { color: '#ffffff' },
+                    '& .MuiListItemText-primary': { color: '#ffffff', fontWeight: 800 },
                   },
 
                   '&:hover:not(.active)': {
-                    bgcolor: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.01)',
-                    boxShadow: isDark
-                      ? `6px 6px 14px rgba(0,0,0,0.65), -3px -3px 8px rgba(255,255,255,0.05), 0 0 20px ${item.color}20`
-                      : '6px 6px 14px #b8c1cf, -6px -6px 14px #ffffff',
-                    '& .MuiListItemIcon-root': { color: item.color },
+                    bgcolor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.03)',
+                    transform: 'translateX(6px)',
+                    color: isDark ? '#F8FAFC' : '#0F172A',
+                    '& .MuiListItemIcon-root': { color: isDark ? '#F8FAFC' : '#0F172A' },
                   },
                 }}
               >
                 <ListItemIcon
                   sx={{
-                    color: 'text.secondary',
-                    minWidth: 40,
-                    transition: 'color 0.3s ease',
+                    color: 'inherit',
+                    minWidth: 44,
+                    transition: 'all 0.3s ease',
                   }}
                 >
                   {item.icon}
@@ -126,11 +108,11 @@ const Sidebar = () => {
                   primary={
                     <Typography
                       sx={{
-                        fontWeight: 700,
-                        fontSize: '0.88rem',
-                        letterSpacing: '-0.01em',
+                        fontWeight: 600,
+                        fontSize: '0.9rem',
+                        letterSpacing: '0.01em',
                         color: 'inherit',
-                        transition: 'color 0.3s ease',
+                        transition: 'all 0.3s ease',
                       }}
                     >
                       {item.text}
@@ -148,27 +130,34 @@ const Sidebar = () => {
         sx={{
           mx: 1,
           mb: 2,
-          p: 2,
-          borderRadius: '18px',
+          p: 2.5,
+          borderRadius: '16px',
           background: isDark
-            ? 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08))'
-            : 'linear-gradient(135deg, rgba(37,99,235,0.06), rgba(124,58,237,0.06))',
+            ? 'linear-gradient(145deg, rgba(16,185,129,0.08), rgba(0,0,0,0.2))'
+            : 'linear-gradient(145deg, rgba(16,185,129,0.05), rgba(255,255,255,0.5))',
           border: isDark
-            ? '1px solid rgba(59,130,246,0.15)'
-            : '1px solid rgba(37,99,235,0.12)',
-          boxShadow: isDark
-            ? 'inset 2px 2px 5px rgba(0,0,0,0.4), inset -1px -1px 3px rgba(255,255,255,0.10)'
-            : 'inset 2px 2px 5px #b8c1cf, inset -2px -2px 5px #ffffff',
+            ? '1px solid rgba(16,185,129,0.1)'
+            : '1px solid rgba(16,185,129,0.2)',
+          boxShadow: isDark ? 'none' : '0 4px 15px rgba(0,0,0,0.02)',
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-          <FiZap size={13} color="#3b82f6" />
-          <Typography sx={{ fontSize: '0.7rem', fontWeight: 800, color: '#3b82f6', letterSpacing: '0.04em' }}>
-            HC Analytics
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1 }}>
+          <Box sx={{ 
+            p: 0.8, 
+            borderRadius: '8px', 
+            bgcolor: 'rgba(16,185,129,0.15)',
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center' 
+          }}>
+            <FiHexagon size={16} color="#10B981" />
+          </Box>
+          <Typography sx={{ fontSize: '0.8rem', fontWeight: 800, color: '#10B981', letterSpacing: '0.02em' }}>
+            System OK
           </Typography>
         </Box>
-        <Typography sx={{ fontSize: '0.6rem', color: 'text.secondary', fontWeight: 600, lineHeight: 1.4 }}>
-          Enterprise Intelligence v2.0
+        <Typography sx={{ fontSize: '0.65rem', color: 'text.secondary', fontWeight: 600, lineHeight: 1.5, mt: 0.5 }}>
+          v3.0.0 — Synced to global telemetry stream.
         </Typography>
       </Box>
     </Box>

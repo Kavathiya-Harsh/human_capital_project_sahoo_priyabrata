@@ -21,7 +21,7 @@ const ErrorState = ({ error, onRetry }) => (
     <motion.div
       animate={{ y: [0, -10, 0] }}
       transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-      style={{ marginBottom: '24px', color: '#FF6B35' }}
+      style={{ marginBottom: '24px', color: '#EC4899' }}
     >
       <FiAlertTriangle size={64} />
     </motion.div>

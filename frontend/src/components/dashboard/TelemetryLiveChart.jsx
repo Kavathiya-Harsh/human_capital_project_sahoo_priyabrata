@@ -5,8 +5,8 @@ import { FiTrendingUp } from 'react-icons/fi';
 const TelemetryLiveChart = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
-  const strokeColor = isDark ? '#00E5FF' : '#0EA5E9';
-  const stopColor = isDark ? '#00E5FF' : '#0EA5E9';
+  const strokeColor = isDark ? '#34D399' : '#10B981';
+  const stopColor = isDark ? '#34D399' : '#10B981';
 
   const [dataPoints, setDataPoints] = useState([40, 45, 38, 52, 48, 60, 55, 62, 58, 65, 70, 72]);
 

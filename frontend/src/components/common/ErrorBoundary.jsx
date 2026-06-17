@@ -46,7 +46,7 @@ class ErrorBoundary extends Component {
               transition={{ duration: 0.5, ease: 'easeInOut' }}
               style={{
                 marginBottom: '24px',
-                color: '#FF6B35',
+                color: '#EC4899',
                 display: 'flex',
                 justifyContent: 'center',
               }}

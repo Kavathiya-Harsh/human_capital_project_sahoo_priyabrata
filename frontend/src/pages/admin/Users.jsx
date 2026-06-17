@@ -20,10 +20,7 @@ const Users = () => {
   const { usersList, loading, error } = useSelector((state) => state.user);
   const { themeMode } = useSelector((state) => state.ui);
 
-  const selectShadow =
-    themeMode === 'dark'
-      ? 'inset 2px 2px 5px #080c16, inset -2px -2px 5px #16223e'
-      : 'inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff';
+
 
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -148,7 +145,6 @@ const Users = () => {
         onClose={handleCloseModal}
         editingUser={editingUser}
         refreshUsers={refreshUsers}
-        selectShadow={selectShadow}
       />
     </motion.div>
   );

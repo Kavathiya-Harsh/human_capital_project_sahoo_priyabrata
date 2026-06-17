@@ -6,9 +6,8 @@ import { FiDatabase, FiGlobe, FiTrendingUp, FiCpu, FiActivity, FiClock } from 'r
 
 const AnalyticsKPIs = ({ analyticsData, loading }) => {
 
-  const { themeMode, appearance } = useSelector((state) => state.ui);
+  const { themeMode } = useSelector((state) => state.ui);
   const isDark = themeMode === 'dark';
-  const isNeu = appearance?.neumorphism !== false;
 
   const items = [
     {
@@ -112,10 +111,9 @@ const AnalyticsKPIs = ({ analyticsData, loading }) => {
                   sx={{
                     p: 1,
                     borderRadius: '12px',
-                    bgcolor: isNeu ? 'transparent' : `${item.color}12`,
+                    bgcolor: `${item.color}12`,
                     color: item.color,
                     display: 'flex',
-                    boxShadow: isNeu ? (isDark ? 'inset 2px 2px 4px #0c0f16, inset -2px -2px 4px #1e2536' : 'inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #ffffff') : 'none',
                   }}
                 >
                   <Icon size={16} />

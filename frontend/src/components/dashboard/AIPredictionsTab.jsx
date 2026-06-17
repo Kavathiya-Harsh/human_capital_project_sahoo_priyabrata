@@ -105,7 +105,7 @@ const AIPredictionsTab = ({ handleAskQuestion, selectedQuestion, loading, typing
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.8 }}>
         {PREDICTIONS.map((pred, i) => (
           <Box key={i} sx={{ display: 'flex', gap: 1.5, alignItems: 'flex-start' }}>
-            <Box sx={{ bgcolor: 'rgba(255,96,56,0.1)', color: '#FF6038', p: 0.8, borderRadius: '8px', mt: 0.2 }}>
+            <Box sx={{ bgcolor: 'rgba(16,185,129,0.1)', color: '#10B981', p: 0.8, borderRadius: '8px', mt: 0.2 }}>
               <FiTrendingUp size={14} />
             </Box>
             <Typography variant="body2" color="text.secondary" fontWeight="600" sx={{ fontSize: '0.8rem', lineHeight: 1.4 }}>

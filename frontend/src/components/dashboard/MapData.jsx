@@ -2,14 +2,14 @@
 import React from 'react';
 
 export const MAP_COUNTRIES = [
-  { id: 'USA', name: 'United States', x: 25, y: 35, avg: 62.5, count: 120, trend: '+1.2%', status: 'Improving', color: '#00E5FF' },
-  { id: 'CAN', name: 'Canada', x: 22, y: 25, avg: 71.2, count: 150, trend: '+2.1%', status: 'Stable', color: '#FF6038' },
+  { id: 'USA', name: 'United States', x: 25, y: 35, avg: 62.5, count: 120, trend: '+1.2%', status: 'Improving', color: '#10B981' },
+  { id: 'CAN', name: 'Canada', x: 22, y: 25, avg: 71.2, count: 150, trend: '+2.1%', status: 'Stable', color: '#00E5FF' },
   { id: 'GBR', name: 'United Kingdom', x: 48, y: 28, avg: 64.1, count: 80, trend: '-0.4%', status: 'Stable', color: '#A855F7' },
   { id: 'DEU', name: 'Germany', x: 52, y: 30, avg: 65.8, count: 95, trend: '+0.8%', status: 'Improving', color: '#10B981' },
-  { id: 'IND', name: 'India', x: 68, y: 48, avg: 58.2, count: 140, trend: '+3.4%', status: 'Rapid Growth', color: '#FF6B35' },
+  { id: 'IND', name: 'India', x: 68, y: 48, avg: 58.2, count: 140, trend: '+3.4%', status: 'Rapid Growth', color: '#8B5CF6' },
   { id: 'AUS', name: 'Australia', x: 85, y: 72, avg: 68.4, count: 234, trend: '+0.5%', status: 'Stable', color: '#3B82F6' },
   { id: 'BRA', name: 'Brazil', x: 38, y: 65, avg: 52.1, count: 60, trend: '+1.1%', status: 'Improving', color: '#F59E0B' },
-  { id: 'SGP', name: 'Singapore', x: 74, y: 56, avg: 78.5, count: 75, trend: '+2.8%', status: 'Peak', color: '#EC4899' }
+  { id: 'SGP', name: 'Singapore', x: 74, y: 56, avg: 78.5, count: 75, trend: '+2.8%', status: 'Peak', color: '#00E5FF' }
 ];
 
 export const ContinentalPaths = ({ theme }) => (

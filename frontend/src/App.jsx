@@ -12,7 +12,7 @@ import { ThemeContextProvider } from './context/ThemeContext';
 
 const AppContent = () => {
   const dispatch = useDispatch();
-  const { themeMode, appearance } = useSelector((state) => state.ui);
+  const { themeMode } = useSelector((state) => state.ui);
   const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -25,34 +25,18 @@ const AppContent = () => {
   const theme = useMemo(() => {
     const isDark = themeMode === 'dark';
 
-    /* ── Palette ──
-       Dark  → premium dark neumorphism  (#0f1117 bg / #1a1f2e cards)
-       Light → original coral/cyan neumorphism  (#E6ECF5)
+    /* ── Palette — Emerald & Space Black ──
+       Dark  → #050505 bg / #121212 cards
+       Light → #F5F5F5 bg / #FFFFFF cards
     ── */
-    const bgDefault      = isDark ? '#0f1117'  : '#E6ECF5';
-    // Cards need to be CLEARLY different from bg: #1a1f2e vs #0f1117 = good contrast
-    const bgPaper        = isDark ? '#1a1f2e'  : '#E6ECF5';
-    const textPrimary    = isDark ? '#f0f4ff'  : '#1E293B';
-    const textSecondary  = isDark ? '#8899bb'  : '#475569';
-    // Dark: blue-purple accent | Light: original coral-orange
-    const primaryColor   = isDark ? '#3b82f6'  : '#FF6038';
-    const secondaryColor = isDark ? '#8b5cf6'  : '#00BACF';
-
-    /* ── Shadow system ──
-       Dark  → deep black outer + white micro-highlight (more pronounced for visibility)
-       Light → original soft beige neumorphic pair
-    ── */
-    const neuOuter = isDark
-      ? '0 8px 32px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)'
-      : '9px 9px 18px #b8c1cf, -9px -9px 18px #ffffff';
-
-    const neuOuterSm = isDark
-      ? '0 4px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.4)'
-      : '4px 4px 8px #b8c1cf, -4px -4px 8px #ffffff';
-
-    const neuOuterHover = isDark
-      ? '0 16px 48px rgba(0,0,0,0.8), 0 4px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)'
-      : '14px 14px 28px #b8c1cf, -14px -14px 28px #ffffff';
+    const bgDefault      = isDark ? '#050505'  : '#f5f5f5';
+    const bgPaper        = isDark ? '#121212'  : '#ffffff';
+    const textPrimary    = isDark ? '#f8fafc'  : '#0f172a';
+    const textSecondary  = isDark ? '#94a3b8'  : '#64748b';
+    
+    // Premium accents (Emerald & Cyan)
+    const primaryColor   = '#10B981'; // Emerald
+    const secondaryColor = '#00E5FF'; // Cyan
 
     return createTheme({
       palette: {
@@ -60,12 +44,12 @@ const AppContent = () => {
         primary:    { main: primaryColor },
         secondary:  { main: secondaryColor },
         success:    { main: '#10b981' },
-        warning:    { main: isDark ? '#f59e0b' : '#FF6B35' },
+        warning:    { main: '#f59e0b' },
         error:      { main: '#ef4444' },
-        info:       { main: '#06b6d4' },
+        info:       { main: '#3b82f6' },
         background: { default: bgDefault, paper: bgPaper },
         text:       { primary: textPrimary, secondary: textSecondary },
-        divider:    isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+        divider:    isDark ? 'rgba(16,185,129,0.15)' : 'rgba(16,185,129,0.1)',
       },
       typography: {
         fontFamily: '"Inter", "Poppins", "Sora", sans-serif',
@@ -82,7 +66,7 @@ const AppContent = () => {
         caption: { fontWeight: 600, letterSpacing: '0.02em' },
         button: { textTransform: 'none', fontWeight: 700, letterSpacing: '0.02em' },
       },
-      shape: { borderRadius: 20 },
+      shape: { borderRadius: 12 },
       components: {
         MuiCssBaseline: {
           styleOverrides: {
@@ -100,21 +84,22 @@ const AppContent = () => {
           styleOverrides: {
             root: {
               backgroundImage: 'none',
-              backgroundColor: bgPaper,
-              // Border: much more visible in dark mode for card definition
-              border: isDark ? '1px solid rgba(255,255,255,0.10)' : 'none',
-              transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              backgroundColor: isDark ? 'rgba(18,18,18,0.8)' : 'rgba(255,255,255,0.9)',
+              backdropFilter: 'blur(24px) saturate(120%)',
+              border: isDark ? '1px solid rgba(16,185,129,0.1)' : '1px solid rgba(16,185,129,0.15)',
+              transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             },
             elevation0: { boxShadow: 'none' },
-            elevation1: { boxShadow: neuOuterSm },
+            elevation1: { boxShadow: isDark ? '0 4px 12px rgba(0,0,0,0.4)' : '0 2px 8px rgba(0,0,0,0.05)' },
             elevation2: {
-              boxShadow: neuOuter,
+              boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.6)' : '0 4px 20px rgba(0,0,0,0.04)',
               '&:hover': {
-                boxShadow: neuOuterHover,
-                transform: isDark ? 'translateY(-4px) scale(1.005)' : 'translateY(-3px)',
+                boxShadow: isDark ? '0 15px 40px rgba(0,0,0,0.8), 0 0 20px rgba(16,185,129,0.1)' : '0 12px 30px rgba(0,0,0,0.08), 0 0 15px rgba(16,185,129,0.1)',
+                transform: 'translateY(-2px)',
+                borderColor: isDark ? 'rgba(16,185,129,0.3)' : 'rgba(16,185,129,0.4)',
               },
             },
-            elevation3: { boxShadow: neuOuterHover },
+            elevation3: { boxShadow: isDark ? '0 20px 50px rgba(0,0,0,0.8)' : '0 12px 30px rgba(0,0,0,0.1)' },
           },
         },
 
@@ -123,14 +108,10 @@ const AppContent = () => {
           styleOverrides: {
             root: {
               backgroundImage: 'none',
-              backgroundColor: isDark ? 'rgba(15,17,23,0.85)' : 'rgba(230,236,245,0.8)',
+              backgroundColor: isDark ? 'rgba(5,5,5,0.8)' : 'rgba(245,245,245,0.8)',
               backdropFilter: 'blur(24px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-              // Border: dark only — light has no bottom border (original)
-              borderBottom: isDark ? '1px solid rgba(255,255,255,0.06)' : 'none',
-              boxShadow: isDark
-                ? '0 4px 24px rgba(0,0,0,0.5)'
-                : '0 4px 30px rgba(31,38,135,0.03)',
+              borderBottom: isDark ? '1px solid rgba(16,185,129,0.1)' : '1px solid rgba(16,185,129,0.15)',
+              boxShadow: 'none',
             },
           },
         },
@@ -140,12 +121,8 @@ const AppContent = () => {
           styleOverrides: {
             paper: {
               backgroundImage: 'none',
-              backgroundColor: isDark ? '#0d0f14' : '#E6ECF5',
-              // No border on light — original style
-              borderRight: isDark ? '1px solid rgba(255,255,255,0.05)' : 'none',
-              boxShadow: isDark
-                ? '4px 0 32px rgba(0,0,0,0.6)'
-                : '4px 0 24px #d1d9e6',
+              backgroundColor: isDark ? '#080808' : '#ffffff',
+              borderRight: isDark ? '1px solid rgba(16,185,129,0.1)' : '1px solid rgba(16,185,129,0.15)',
             },
           },
         },
@@ -154,33 +131,27 @@ const AppContent = () => {
         MuiButton: {
           styleOverrides: {
             root: {
-              borderRadius: 12,
+              borderRadius: 8,
               padding: '10px 24px',
               fontWeight: 700,
               transition: 'all 0.3s ease',
             },
             contained: {
-              // Dark: blue-purple gradient | Light: original coral neumorphic
-              ...(isDark ? {
-                background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
-                boxShadow: '0 4px 16px rgba(59,130,246,0.4)',
-                '&:hover': {
-                  boxShadow: '0 8px 24px rgba(59,130,246,0.5)',
-                  transform: 'translateY(-2px)',
-                },
-              } : {
-                boxShadow: neuOuterSm,
-                '&:hover': {
-                  boxShadow: neuOuter,
-                  transform: 'translateY(-1px)',
-                },
-              }),
+              background: 'linear-gradient(135deg, #10B981 0%, #00E5FF 100%)',
+              color: '#050505', // High contrast text on neon buttons
+              boxShadow: '0 4px 15px rgba(16,185,129,0.3)',
+              '&:hover': {
+                background: 'linear-gradient(135deg, #34D399 0%, #22D3EE 100%)',
+                boxShadow: '0 8px 25px rgba(16,185,129,0.5)',
+                transform: 'translateY(-1px)',
+              },
             },
             outlined: {
-              borderColor: isDark ? 'rgba(255,255,255,0.15)' : undefined,
+              borderColor: isDark ? 'rgba(16,185,129,0.4)' : 'rgba(16,185,129,0.5)',
+              color: isDark ? '#10B981' : '#059669',
               '&:hover': {
-                borderColor: primaryColor,
-                backgroundColor: isDark ? 'rgba(59,130,246,0.08)' : undefined,
+                borderColor: '#10B981',
+                backgroundColor: 'rgba(16,185,129,0.1)',
               },
             },
           },
@@ -190,11 +161,11 @@ const AppContent = () => {
         MuiIconButton: {
           styleOverrides: {
             root: {
-              borderRadius: 14,
+              borderRadius: 8,
               transition: 'all 0.3s ease',
               '&:hover': {
-                backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)',
-                transform: 'scale(1.1)',
+                backgroundColor: 'rgba(16,185,129,0.1)',
+                transform: 'scale(1.05)',
               },
             },
           },
@@ -204,7 +175,7 @@ const AppContent = () => {
         MuiChip: {
           styleOverrides: {
             root: {
-              borderRadius: 10,
+              borderRadius: 6,
               fontWeight: 700,
               fontSize: '0.7rem',
             },
@@ -215,13 +186,13 @@ const AppContent = () => {
         MuiTooltip: {
           styleOverrides: {
             tooltip: {
-              backgroundColor: isDark ? '#1e2330' : '#1e293b',
-              color: '#f0f4ff',
-              borderRadius: 10,
+              backgroundColor: isDark ? '#1a1a1a' : '#1e293b',
+              color: '#f8fafc',
+              borderRadius: 8,
               fontSize: '0.75rem',
               fontWeight: 600,
-              boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
+              border: '1px solid rgba(16,185,129,0.2)',
             },
           },
         },
@@ -230,7 +201,7 @@ const AppContent = () => {
         MuiTableCell: {
           styleOverrides: {
             root: {
-              borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+              borderColor: isDark ? 'rgba(16,185,129,0.1)' : 'rgba(16,185,129,0.1)',
             },
             head: {
               fontWeight: 800,
@@ -238,16 +209,6 @@ const AppContent = () => {
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
               color: textSecondary,
-            },
-          },
-        },
-
-        /* ── Linear Progress ── */
-        MuiLinearProgress: {
-          styleOverrides: {
-            root: {
-              borderRadius: 4,
-              backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
             },
           },
         },
@@ -264,17 +225,15 @@ const AppContent = () => {
             position="top-right"
             toastOptions={{
               style: {
-                borderRadius: '16px',
-                background: themeMode === 'dark' ? '#1E293B' : '#FFFFFF',
-                color: themeMode === 'dark' ? '#F8FAFC' : '#0F172A',
-                boxShadow:
-                  appearance.neumorphism !== false
-                    ? (themeMode === 'dark'
-                      ? '8px 8px 16px #080c16, -8px -8px 16px #16223e'
-                      : '8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff')
-                    : (themeMode === 'dark' ? '0 4px 12px rgba(0,0,0,0.3)' : '0 4px 12px rgba(0,0,0,0.05)'),
+                borderRadius: '8px',
+                background: themeMode === 'dark' ? '#121212' : '#ffffff',
+                color: themeMode === 'dark' ? '#f8fafc' : '#0f172a',
+                boxShadow: themeMode === 'dark'
+                  ? '0 10px 30px rgba(0,0,0,0.8)'
+                  : '0 8px 20px rgba(0,0,0,0.1)',
                 fontWeight: 600,
                 padding: '16px 24px',
+                border: themeMode === 'dark' ? '1px solid rgba(16,185,129,0.2)' : '1px solid rgba(16,185,129,0.15)',
               },
             }}
           />

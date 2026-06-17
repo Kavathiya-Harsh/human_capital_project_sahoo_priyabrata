@@ -19,7 +19,7 @@ const Analytics = () => {
   const dispatch = useDispatch();
   const { analyticsData, loading, error } = useSelector((state) => state.data);
   const { appearance } = useSelector((state) => state.ui);
-  const isNeu = appearance?.neumorphism !== false;
+  const isNeu = false; // Legacy flag completely removed
 
   useEffect(() => {
     dispatch(fetchStats());
@@ -74,14 +74,7 @@ const Analytics = () => {
             borderRadius: '24px',
             px: 3,
             border: '1px solid',
-            boxShadow: (theme) => isNeu ? (theme.palette.mode === 'dark'
-              ? '4px 4px 8px #0c0f16, -4px -4px 8px #1e2536'
-              : '4px 4px 8px #b8c1cf, -4px -4px 8px #ffffff') : 'none',
-            '&:hover': {
-              boxShadow: (theme) => isNeu ? (theme.palette.mode === 'dark'
-                ? 'inset 2px 2px 5px #0c0f16, inset -2px -2px 5px #1e2536'
-                : 'inset 2px 2px 5px #b8c1cf, inset -2px -2px 5px #ffffff') : 'none',
-            }
+            className: 'neu-inset'
           }}
         >
           Refresh Data

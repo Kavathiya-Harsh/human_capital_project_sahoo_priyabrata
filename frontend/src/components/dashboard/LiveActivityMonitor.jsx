@@ -162,7 +162,7 @@ const LiveActivityMonitor = () => {
                   <Typography variant="caption" sx={{ fontSize: '0.68rem', fontWeight: 800, color: '#22C55E' }}>
                     {log.status}
                   </Typography>
-                  <Typography variant="caption" sx={{ fontSize: '0.68rem', fontWeight: 700, color: '#FF6B35' }}>
+                  <Typography variant="caption" sx={{ fontSize: '0.68rem', fontWeight: 700, color: '#00E5FF' }}>
                     {log.latency}ms
                   </Typography>
                 </Box>
