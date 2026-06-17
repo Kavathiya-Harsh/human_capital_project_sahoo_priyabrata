@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: human-capital-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 1h
+      - key: CLIENT_URL
+        sync: false # Set this to your Vercel URL in the Render dashboard
